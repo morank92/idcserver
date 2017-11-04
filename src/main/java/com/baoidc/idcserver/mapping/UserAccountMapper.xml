@@ -1,0 +1,253 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baoidc.idcserver.dao.IUserAccountDAO">
+
+	<!-- 用户账户 -->
+	<resultMap type="com.baoidc.idcserver.po.UserAccount" id="UserAccountMap">
+		<id column="account_id" property="accountId" />
+		<result column="user_id" property="userId" />
+		<result column="create_time" property="createTime" />
+		<result column="charge_total" property="chargeTotal" />
+		<result column="consume_total" property="consumeTotal" />
+	</resultMap>
+
+	<!-- 用户充值记录 -->
+	<resultMap type="com.baoidc.idcserver.po.ChargeRecord" id="ChargeRecordMap">
+		<id column="record_id" property="recordId" />
+		<result column="user_id" property="userId" />
+		<result column="account_id" property="accountId" />
+		<result column="charge_no" property="chargeNo" />
+		<result column="charge_create_time" property="chargeCreateTime" />
+		<result column="charge_amt" property="chargeAmt" />
+		<result column="charge_type" property="chargeType" />
+		<result column="charge_status" property="chargeStatus" />
+		<result column="charge_finish_time" property="chargeFinishTime" />
+	</resultMap>
+
+	<!-- 用户消费记录 -->
+	<resultMap type="com.baoidc.idcserver.po.ConsumeRecord" id="ConsumeRecordMap">
+		<id column="record_id" property="recordId" />
+		<result column="user_id" property="userId" />
+		<result column="account_id" property="accountId" />
+		<result column="consume_no" property="consumeNo" />
+		<result column="order_no" property="orderNo" />
+		<result column="order_type" property="orderType" />
+		<result column="consume_amt" property="consumeAmt" />
+		<result column="consume_time" property="consumeTime" />
+		<result column="product_name" property="productName" />
+	</resultMap>
+
+	<resultMap type="com.baoidc.idcserver.po.PayRecord" id="BaseResultMap">
+		<result column="record_id" property="recordId" jdbcType="TINYINT" />
+		<result column="bizType" property="bizType" jdbcType="VARCHAR" />
+		<result column="orderId" property="orderId" jdbcType="VARCHAR" />
+		<result column="signature" property="signature" jdbcType="VARCHAR" />
+		<result column="txnSubType" property="txnSubType" jdbcType="VARCHAR" />
+		<result column="traceNo" property="traceNo" jdbcType="VARCHAR" />
+		<result column="accNo" property="accNo" jdbcType="VARCHAR" />
+		<result column="settleAmt" property="settleAmt" jdbcType="VARCHAR" />
+		<result column="settleCurrencyCode" property="settleCurrencyCode"
+			jdbcType="VARCHAR" />
+		<result column="settleDate" property="settleDate" jdbcType="VARCHAR" />
+		<result column="txnType" property="txnType" jdbcType="VARCHAR" />
+		<result column="certId" property="certId" jdbcType="VARCHAR" />
+		<result column="encoding" property="encoding" jdbcType="VARCHAR" />
+		<result column="version" property="version" jdbcType="VARCHAR" />
+		<result column="queryId" property="queryId" jdbcType="VARCHAR" />
+		<result column="accessType" property="accessType" jdbcType="VARCHAR" />
+		<result column="respMsg" property="respMsg" jdbcType="VARCHAR" />
+		<result column="traceTime" property="traceTime" jdbcType="VARCHAR" />
+		<result column="txnTime" property="txnTime" jdbcType="VARCHAR" />
+		<result column="merId" property="merId" jdbcType="VARCHAR" />
+		<result column="currencyCode" property="currencyCode" jdbcType="VARCHAR" />
+		<result column="respCode" property="respCode" jdbcType="VARCHAR" />
+		<result column="signMethod" property="signMethod" jdbcType="VARCHAR" />
+		<result column="txnAmt" property="txnAmt" jdbcType="VARCHAR" />
+		<result column="useName" property="userName" jdbcType="VARCHAR" />
+	</resultMap>
+
+	<sql id="UserAccount_Column_List">
+		account_id,user_id,create_time,charge_total,consume_total
+	</sql>
+
+	<sql id="ChargeRecord_Column_List">
+		record_id,user_id,account_id,charge_no,charge_create_time,charge_amt,charge_type,charge_status,charge_finish_time
+	</sql>
+
+	<sql id="ConsumeRecord_Column_List">
+		record_id,user_id,account_id,consume_no,order_no,order_type,consume_amt,consume_time,product_name
+	</sql>
+
+	<sql id="Base_column_list">
+		record_id,bizType,orderId,signature,txnSubType,traceNo,accNo,settleAmt,settleCurrencyCode,settleDate,txnType,certId,encoding,version,queryId,accessType,respMsg,traceTime,txnTime,merId,currencyCode,respCode,signMethod,txnAmt,userName
+	</sql>
+
+	<!-- 新增银行交易记录 -->
+	<insert id="createPayRecord" flushCache="true" parameterType="java.util.Map">
+		insert into
+		pay_record(bizType,orderId,signature,txnSubType,traceNo,accNo,settleAmt,settleCurrencyCode,settleDate,txnType,certId,encoding,version,queryId,accessType,respMsg,traceTime,txnTime,merId,currencyCode,respCode,signMethod,txnAmt,userName)
+		values(#{bizType},#{orderId},#{signature},#{txnSubType},#{traceNo},#{accNo},#{settleAmt},#{settleCurrencyCode},#{settleDate},#{txnType},#{certId},#{encoding},#{version},#{queryId},#{accessType},#{respMsg},#{traceTime},#{txnTime},#{merId},#{currencyCode},#{respCode},#{signMethod},#{txnAmt},#{userName})
+	</insert>
+	
+	<!-- 支付宝交易记录 
+	//创建支付宝交易记录
+	public void createAliPayRecord(Map<String,String> params);
+	-->
+	<insert id="createAliPayRecord" parameterType="map">
+		insert into ali_pay_record
+		(body,buyer_email,buyer_id,exterface,is_success,notify_id,notify_time,notify_type
+		,out_trade_no,payment_type,seller_email,seller_id,subject,total_fee,trade_no
+		,trade_status,sign,sign_type)
+		values(#{body},#{buyer_email},#{buyer_id},#{exterface},#{is_success},#{notify_id},
+		#{notify_time},#{notify_type},#{out_trade_no},#{payment_type},#{seller_email},#{seller_id},
+		#{subject},#{total_fee},#{trade_no},#{trade_status},#{sign},#{sign_type})
+	</insert>
+	
+	
+	<!-- 新增账户 -->
+	<insert id="addNewUserAccount" parameterType="com.baoidc.idcserver.po.UserAccount"
+		flushCache="true" useGeneratedKeys="true" keyProperty="account_id">
+		insert into user_account(user_id,create_time,charge_total,consume_total)
+		values(#{userId},#{createTime},#{chargeTotal},#{consumeTotal})
+	</insert>
+
+	<select id="getAccountInfo" parameterType="int" resultMap="UserAccountMap">
+		select
+		<include refid="UserAccount_Column_List" />
+		from user_account where user_id = #{userId};
+	</select>
+
+	<!-- 插入充值记录 -->
+	<insert id="addNewChargeRecord" parameterType="com.baoidc.idcserver.po.ChargeRecord"
+		flushCache="true" useGeneratedKeys="true" keyProperty="recordId">
+		insert into
+		charge_record(user_id,account_id,charge_no,charge_create_time,charge_amt,charge_type,charge_status)
+		values(#{userId},#{accountId},#{chargeNo},#{chargeCreateTime},#{chargeAmt},#{chargeType},#{chargeStatus})
+	</insert>
+
+	<!-- 插入消费记录 -->
+	<insert id="addNewConsumeRecord" parameterType="com.baoidc.idcserver.po.ConsumeRecord"
+		flushCache="true" useGeneratedKeys="true" keyProperty="recordId">
+		insert into
+		consume_record(user_id,account_id,consume_no,order_no,order_type,consume_amt,consume_time,product_name,instance_type)
+		values(#{userId},#{accountId},#{consumeNo},#{orderNo},#{orderType},#{consumeAmt},#{consumeTime},#{productName},#{instanceType})
+	</insert>
+	
+	
+	<!-- 批量插入消费记录 -->
+    <insert id="addNewConsumeRecordList" parameterType="java.util.List">
+      insert into consume_record(user_id,account_id,consume_no,order_no,order_type,consume_amt,consume_time,product_name,instance_type) values
+      <foreach collection="recordList" item="record" separator=",">
+        (#{record.userId},#{record.accountId},#{record.consumeNo},#{record.orderNo},#{record.orderType},
+        #{record.consumeAmt},#{record.consumeTime},#{record.productName},#{record.instanceType})
+      </foreach>
+    </insert>
+
+	<!-- 更新账户信息 -->
+	<update id="updateAccountInfo" parameterType="com.baoidc.idcserver.po.UserAccount"
+		flushCache="true">
+		update user_account
+		<set>
+			<if test="chargeTotal != 0.00">
+				charge_total = charge_total + #{chargeTotal},
+			</if>
+			<if test="consumeTotal != 0.00">
+				consume_total = consume_total + #{consumeTotal}
+			</if>
+		</set>
+		where account_id = #{accountId} and user_id = #{userId}
+	</update>
+
+	<!-- //查询充值记录 public List<ChargeRecord> getChargeRecord(Integer userId); -->
+	<select id="getChargeRecord" parameterType="com.baoidc.idcserver.vo.query.ChargeQueryVO"
+		resultMap="ChargeRecordMap">
+		select
+		<include refid="ChargeRecord_Column_List" />
+		from charge_record
+		where user_id = #{userId}
+		<if test="startTime != ''">
+		    <![CDATA[
+	          and charge_create_time >= #{startTime}
+	   		]]>
+		</if>
+		<if test="endTime != ''">
+			<![CDATA[
+	          and charge_create_time <= #{endTime}
+	   		]]>
+		</if>
+	</select>
+	<!-- //查询消费记录 public List<ConsumeRecord> getConsumeRecord(Integer userId); -->
+
+<!-- 	<select id="getConsumeRecord" parameterType="int" resultMap="ConsumeRecordMap">
+		select
+		<include refid="ConsumeRecord_Column_List" />
+		from consume_record where user_id = #{userId}
+	</select> -->
+	
+	<!-- 查询当月消费记录 -->
+	<select id="getConsumeRecord" parameterType="com.baoidc.idcserver.vo.query.ConsumeQueryVO" resultMap="ConsumeRecordMap">
+	    select
+	    <include refid="ConsumeRecord_Column_List"/>
+	    from consume_record where user_id = #{userId}
+	    <if test="currentMonth != ''">
+	      and date_format(consume_time,'%Y-%m') = #{currentMonth}
+	    </if>
+	    <if test="startTime != ''">
+	       <![CDATA[
+	          and consume_time >= #{startTime}
+	   		]]>
+	    </if>
+	    <if test="endTime != ''">
+	       <![CDATA[
+	          and consume_time <= #{endTime}
+	   		]]>
+	    </if>
+	    <if test="orderType != 0">
+	        and order_type = #{orderType}
+	    </if>
+	    order by consume_time desc
+	</select>
+
+	<update id="updateChargeRecord" parameterType="com.baoidc.idcserver.po.ChargeRecord"
+		flushCache="true">
+		update charge_record
+		<set>
+			<if test="chargeStatus != -1">
+				charge_status = #{chargeStatus},
+			</if>
+			<if test="chargeFinishTime != null">
+				charge_finish_time = #{chargeFinishTime}
+			</if>
+		</set>
+		where record_id = #{recordId}
+	</update>
+
+	<select id="getChargeRecordByOrderNo" parameterType="string"
+		resultMap="ChargeRecordMap">
+		select
+		<include refid="ChargeRecord_Column_List" />
+		from charge_record where charge_no = #{orderNo}
+	</select>
+	
+	<!-- 
+	//创建提现记录
+	public void createEncashmentRecord(EncashmentRecord er);
+	 -->
+	<insert id="createEncashmentRecord" parameterType="com.baoidc.idcserver.po.EncashmentRecord">
+		insert into encashment_record (user_id,encashment_no,encashment_amt,encashment_account,encashment_create_time)
+		values(#{userId},#{encashmentNo},#{encashmentAmt},#{encashmentAccount},#{encashmentCreateTime})
+	</insert>
+
+	<!-- 
+	//根据用户id查询提现记录
+	public List<EncashmentRecord> getEncashmentRecordById(Integer id);
+	 -->
+	<select id="getEncashmentRecordById" parameterType="int" resultType="com.baoidc.idcserver.po.EncashmentRecord">
+		select encashment_no encashmentNo,encashment_create_time encashmentCreateTime,encashment_amt encashmentAmt,
+		encashment_account encashmentAccount,encashment_status encashmentStatus,encashment_finish_time encashmentFinishTime
+		from encashment_record
+		where user_id = #{id}
+	</select>
+
+</mapper>

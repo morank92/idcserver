@@ -1,0 +1,304 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baoidc.idcserver.dao.DeviceInstanceDAO">
+	<!-- <cache type="com.baoidc.idcserver.cache.LoggingRedisCache" /> -->
+
+	<resultMap type="com.baoidc.idcserver.po.DeviceInstance" id="instanceMap">
+       <id column="instance_id" property="instanceId"/>
+       <result column="instance_num" property="instanceNum"/>
+       <result column="service_id" property="serviceId"/>
+       <result column="device_id" property="deviceId"/>
+       <result column="chest_id" property="chestId"/>
+       <result column="user_id" property="userId"/>
+       <result column="status" property="status"/>
+       <result column="device_name" property="deviceName"/>
+       <result column="instance_type" property="instanceType"/>
+       <result column="start_time" property="startTime"/>
+       <result column="end_time" property="endTime"/>
+       <result column="price" property="price"/>
+       <result column="source_price" property="sourcePrice"/>
+       <result column="room" property="room"/>
+       <result column="product_name" property="productName"/>
+       <result column="auto_renew_status" property="autoRenewStatus"/>
+       <collection property="instanceParamList" column="instance_id" select="getInstanceParamListByInstanceId" ofType="com.baoidc.idcserver.po.InstanceParam"></collection>
+       <collection property="ipList" column="device_id" select="getInstanceIpByInstanceId" ofType="com.baoidc.idcserver.po.InstanceIp"></collection>
+    </resultMap>
+    <resultMap type="com.baoidc.idcserver.po.InstanceParam" id="instanceParamMap">
+       <id column="id" property="id"/>
+       <result column="instance_id" property="instanceId"/>
+       <result column="param_name" property="paramName"/>
+       <result column="param_value" property="paramValue"/>
+       <result column="tag_value" property="tagValue"/>
+    </resultMap>
+    <resultMap type="com.baoidc.idcserver.po.InstanceIp" id="instanceIpMap">
+       <result column="instance_id" property="instanceId"/>
+       <result column="ip_str" property="ipStr"/>
+       <result column="ip_busi" property="ipBusi"/>
+       <result column="chest_id" property="chestId"/>
+       <result column="ip_status" property="ipStatus"/>
+    </resultMap>
+    <sql id="instance_column_list">
+       instance_id,service_id,device_id, instance_num,user_id,device_name,status,instance_type,start_time,end_time,price,source_price,auto_renew_status
+    </sql>
+    <sql id="instanceParam_column_list">
+       id,instance_id,param_name,param_value,tag_value
+    </sql>
+    <sql id="instanceIp_column_list">
+       instance_id,ip_str,ip_busi,chest_id,ip_status
+    </sql>
+    
+    <!-- 获取单个Instance by instanceId -->
+    <select id="getInstanceByInstanceId" resultMap="instanceMap">
+    	select d.service_id, d.instance_id, d.instance_num, d.user_id, d.device_id, d.chest_id, d.status, d.device_name, d.instance_type, 
+    	d.start_time, d.end_time,
+    	d.price, d.source_price, d.auto_renew_status,
+    	p.product_name
+    	from device_instance d
+    	left join product_order p
+    	on d.instance_type = p.product_id
+    	where d.instance_id = #{instanceId}
+    </select>
+    
+        <!-- 获取单个Instance by instanceId -->
+    <select id="getInstanceInUse" resultMap="instanceMap">
+    	select 
+    	<include refid="instance_column_list"/>
+    	from device_instance 
+    	where status =0 || status = 1
+    </select>
+    
+    <!-- 
+    //获取机房下所有的实例
+	public List<DeviceInstance> getAllInstanceByHostRoom(@Param("hostRoom")String hostRoom,@Param("userId")int userId);
+     -->
+     <select id="getAllInstanceByHostRoom" parameterType="string" resultMap="instanceMap">
+     	select service_id,start_time,end_time,room from device_instance
+     	where 1=1
+     	<if test="userId != -1">
+     		and user_id = #{userId}
+     	</if>
+     	<if test="hostRoom !='' or hostRoom !=null">
+     		and room = #{hostRoom}
+     	</if>
+     </select>
+    
+    
+    <!-- 获取单个Instance by orderId -->
+    <select id="getInstanceByorderId" resultMap="instanceMap">
+    	select d.service_id, d.instance_id, d.instance_num, d.user_id, d.device_id, d.chest_id, d.status, d.device_name, d.instance_type, d.start_time, d.end_time,
+    	d.price, d.source_price, d.auto_renew_status,
+    	p.product_name
+    	from device_instance d
+    	left join product_order p
+    	on d.instance_type = p.product_id
+    	where d.order_id = #{orderId}
+    </select>
+    
+    
+    <!-- 获取用户的Instance by UserId -->
+    <select id="getInstanceListByUserId" parameterType="int" resultMap="instanceMap">
+    	select d.service_id, d.instance_id, d.instance_num, d.user_id, d.device_id, d.chest_id, d.status, d.device_name, d.instance_type, d.start_time, d.end_time,
+    	d.price, d.source_price, d.auto_renew_status,
+    	p.product_name
+    	from device_instance d
+    	left join product_order p
+    	on d.instance_type = p.product_id
+    	where d.user_id = #{userId}
+    </select>
+    <!-- 获取用户的Instance by UserId and ProductId -->
+    <select id="getInstanceList" parameterType="com.baoidc.idcserver.po.DeviceInstance" resultMap="instanceMap">
+    	select d.service_id, d.instance_id, d.instance_num, d.user_id, d.device_id, d.chest_id, d.status, d.device_name, d.instance_type, d.start_time, d.end_time,
+    	d.price, d.source_price, d.auto_renew_status,
+    	p.product_name
+    	from device_instance d
+   		left join product_order p
+    		on d.instance_type = p.product_id
+    	where d.user_id = #{userId}
+    	<if test="serviceId != 0">
+    		and d.service_id = #{serviceId}
+    	</if>
+    	<if test="instanceId != 0">
+    		and d.instance_id = #{instanceId}
+    	</if>
+    	<![CDATA[
+	        and status <> 3
+	    ]]> 
+    </select>
+    
+    <!-- 从数据库获取实例，保证数据同步统一性，insList：页面现有的实例集合 -->
+    <select id="getSingleInstance" parameterType="com.baoidc.idcserver.po.DeviceInstance" resultMap="instanceMap">
+    	select d.service_id, d.instance_id, d.instance_num, d.user_id, d.device_id, d.chest_id, d.status, d.device_name, d.instance_type, d.start_time, d.end_time,
+    	d.price, d.source_price, d.auto_renew_status,
+    	p.product_name
+    	from device_instance d
+   		left join product_order p
+    		on d.instance_type = p.product_id
+    	where d.instance_id = #{instanceId}
+    			and d.user_id = #{userId}
+    </select>
+    
+    <!-- 获取instanceParam by instanceId -->
+    <select id="getInstanceParamListByInstanceId" parameterType="int" resultMap="instanceParamMap">
+    	select 
+    	<include refid="instanceParam_column_list"/>
+    	from instance_param
+    	where instance_id = #{instanceId}
+    </select>
+    
+    <!-- 获取instanceParam by instanceId -->
+    <select id="getInstanceIpByInstanceId" parameterType="int" resultMap="instanceIpMap">
+    	select 
+    	<include refid="instanceIp_column_list"/>
+    	from instance_ip
+    	where instance_id = #{deviceId}
+    </select>
+    
+    <!-- 获取instanceParam by chestId -->
+    <select id="getInstanceIpByChestId" parameterType="int" resultMap="instanceIpMap">
+    	select 
+    	<include refid="instanceIp_column_list"/>
+    	from instance_ip
+    	where chest_id = #{chestId}
+    </select>
+    
+    <!-- 新建产品实例 -->
+    <insert id="generateNewInstance" parameterType="com.baoidc.idcserver.po.DeviceInstance" flushCache="true" useGeneratedKeys="true" keyProperty="instanceId">
+      insert into device_instance(service_id, instance_num, device_id, chest_id,
+      							user_id, status, device_name, instance_type, start_time, end_time, price, order_id, room,source_price,auto_renew_status)
+      values(#{serviceId},#{instanceNum},#{deviceId},#{chestId},
+      		#{userId},#{status},#{deviceName},#{instanceType},#{startTime},#{endTime},#{price},#{orderId},#{room},#{sourcePrice},#{autoRenewStatus})
+    </insert>
+    
+    <!-- 新建产品实例参数 -->
+    <insert id="addInstanceParams" parameterType="java.util.List">
+      insert into instance_param(instance_id,param_name,param_value,tag_value) values
+      <foreach collection="instanceParamList" item="instanceParams" separator=",">
+        (#{instanceParams.instanceId},#{instanceParams.paramName},#{instanceParams.paramValue},#{instanceParams.tagValue})
+      </foreach>
+    </insert>
+    
+    <!-- 更新产品实例参数 -->
+    <update id="updateInstanceParam" parameterType="java.util.List" flushCache="true">
+      <foreach collection="instanceParamList" item="instanceParam" separator=";">
+        update instance_param
+        <set>
+           <![CDATA[
+	        param_value = #{instanceParam.paramValue}
+	       ]]> 
+        </set>
+        where instance_id = #{instanceParam.instanceId} and tag_value = #{instanceParam.tagValue}
+      </foreach>
+    </update>
+    
+    <!-- 更新产品实例 -->
+    <update id="updateInstance" parameterType="com.baoidc.idcserver.po.DeviceInstance" flushCache="true">
+       update device_instance
+       <set>
+         status = #{status},end_time = #{endTime},start_time = #{startTime},price = #{price},source_price = #{sourcePrice}
+       </set>
+       where instance_id = #{instanceId}
+    </update>
+    
+    
+    <!-- 更新产品实例 -->
+    <update id="updateInstanceByAnyting" parameterType="com.baoidc.idcserver.po.DeviceInstance" flushCache="true">
+       update device_instance
+       <set>
+         	auto_renew_status = #{autoRenewStatus}
+       </set>
+       where instance_id = #{instanceId}
+    </update>
+    
+    <!-- 查询待回收产品实例 -->
+    <select id="getPreRecycleInstanceList" resultMap="instanceMap">
+    	select d.service_id, d.instance_id,d.device_id, d.instance_num, d.user_id, d.status, d.device_name,d.instance_type, d.start_time, d.end_time,
+    	d.price, d.source_price, d.auto_renew_status,
+    	p.product_name
+    	from device_instance d
+   		left join product_order p
+    		on d.instance_type = p.product_id
+    	where status = 2
+    </select>
+    
+    <select id="getInstParam" parameterType="com.baoidc.idcserver.po.InstanceParam" resultMap="instanceParamMap">
+      select 
+      <include refid="instanceParam_column_list"/>
+      from instance_param where instance_id = #{instanceId} and tag_value = #{tagValue}
+    </select>
+   
+    <!-- 删除实例参数 -->
+    <delete id="deleteInstancParam" parameterType="int" flushCache="true">
+      delete from instance_param where instance_id = #{instanceId}
+    </delete>
+    
+    <!-- 通过ip获取对应的ip对象 -->
+    <select id="getInstanceIpByIpstr" parameterType="String" resultMap="instanceIpMap">
+      select 
+      <include refid="instanceIp_column_list"/>
+      from instance_ip
+      where ip_str like #{ipStr}
+    </select>
+    
+    <!-- 获取单个Instance by deviceId -->
+    <select id="getInstanceByDeviceId" resultMap="instanceMap">
+    	select d.service_id, d.instance_id, d.instance_num, d.user_id, d.device_id, d.status, d.device_name, d.instance_type, d.start_time, d.end_time,
+    	d.price, d.source_price, d.auto_renew_status,
+    	p.product_name
+    	from device_instance d
+    	left join product_order p
+    	on d.instance_type = p.product_id
+    	where d.device_id = #{deviceId}
+    </select>
+    
+    <resultMap type="com.baoidc.idcserver.po.AutoRenewConf" id="autoRenewConfMap">
+       <id column="id" property="id"/>
+       <result column="instance_id" property="instanceId"/>
+       <result column="duration" property="duration"/>
+       <result column="status" property="status"/>
+    </resultMap>
+    
+    <sql id="autoRenewConf_column_list">
+      id,instance_id,duration,status
+    </sql>
+    
+    <!-- 添加自动续费的配置 -->
+    <insert id="addAutoRenewConf" parameterType="com.baoidc.idcserver.po.AutoRenewConf">
+    	insert into auto_renew_conf(instance_id, duration, status) values(#{instanceId}, #{duration} ,#{status}) 
+    </insert>
+    
+    <!-- 根据实例Id查询用户实例自动续费配置 -->
+    <select id="getAutoRenewConfByInstId" parameterType="int" resultMap="autoRenewConfMap">
+      select
+      <include refid="autoRenewConf_column_list"/>
+      from auto_renew_conf where instance_id = #{instanceId}
+      <![CDATA[
+	      and status <> 1
+	  ]]> 
+    </select>
+    
+    <!-- 根据instanceId删除deleteAutoRenewConf -->
+    <delete id="deleteAutoRenewConf" parameterType="int">
+    	
+    	delete from auto_renew_conf
+    	where instance_id = #{instanceId}
+    	
+    </delete>
+    
+    
+    <!-- 更新配置 -->
+    <update id="updateAutoRenewConf" parameterType="com.baoidc.idcserver.po.AutoRenewConf">
+    	update auto_renew_conf
+    	set status = #{status}
+    	where instance_id = #{instanceId}
+    	
+    </update>
+    
+    
+    
+    
+    
+    
+    
+    
+</mapper>

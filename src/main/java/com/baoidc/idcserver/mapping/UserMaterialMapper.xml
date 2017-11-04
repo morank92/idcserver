@@ -1,0 +1,168 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baoidc.idcserver.dao.IUserMaterialDao">
+   <!-- 用户联系人 -->
+   <resultMap type="com.baoidc.idcserver.po.UserContacts" id="UserContactsMap">
+      <id column="id" property="id"/>
+      <result column="user_id" property="userId"/>
+      <result column="real_name" property="realName"/>
+      <result column="fixedlink_phone" property="fixedlinkPhone"/>
+      <result column="mobile_phone" property="mobilePhone"/>
+      <result column="contact_email" property="contactEmail"/>
+      <result column="qq_num" property="qqNum"/>
+   </resultMap>
+   
+   <!-- 
+   	//查询用户详细信息
+	public User getUserByUserId(Integer userId);
+    -->
+   <select id="getUserByUserId" parameterType="int" resultMap="com.baoidc.idcserver.dao.IUserDAO.UserMap">
+   		select 
+     id,user_name,e_mail,password,phone_num,register_time,
+      identity_type,real_name,company_addr,office_phone,zip_code,
+      fax_no,industry_app,primary_busi,network_addr,customer_manager_id,qq_num,zfbao,update_flag,
+      auth_type,auth_picture,auth_picture_front,auth_picture_back,auth_name,auth_num
+      from user where id = #{id}
+   </select>
+   
+   <!-- 
+   	//修改用户基本信息
+	public void updateUser(User user);
+    -->
+    <update id="updateUser" parameterType="com.baoidc.idcserver.po.User">
+    	update user
+       <set>
+          <if test="email != null">
+             e_mail = #{email},
+          </if>
+          <if test="password != null">
+             password = #{password},
+          </if>
+          <if test="phoneNum != null">
+             phone_num = #{phoneNum},
+          </if>
+          <if test="realName != null">
+             real_name = #{realName},
+          </if>
+          <if test="companyAddr != null">
+             company_addr = #{companyAddr},
+          </if>
+          <if test="officePhone != null">
+             office_phone = #{officePhone},
+          </if>
+          <if test="zipCode != null">
+             zip_code = #{zipCode},
+          </if>
+          <if test="faxNo != null">
+             fax_no = #{faxNo},
+          </if>
+          <if test="industryApp != null">
+             industry_app = #{industryApp},
+          </if>
+          <if test="primaryBusi != null">
+             primary_busi = #{primaryBusi},
+          </if>
+          <if test="networkAddr != null">
+             network_addr = #{networkAddr},
+          </if>
+          <if test="customerManagerId != 0">
+             customer_manager_id = #{customerManagerId},
+          </if>
+          <if test="authType != null">
+             auth_type = #{authType},
+          </if>
+          
+          <if test="authName != null">
+             auth_name = #{authName},
+          </if>
+          <if test="authPicture != null">
+             auth_picture = #{authPicture},
+          </if>
+          <if test="authPictureFront!= null">
+             auth_picture_front = #{authPictureFront},
+          </if>
+          <if test="authPictureBack != null">
+             auth_picture_back = #{authPictureBack},
+          </if>
+          <if test="authNum!= null">
+             auth_num = #{authNum},
+          </if>
+          update_flag = 1
+       </set>
+       where id = #{id}
+    </update>
+   
+   <!-- 
+   //新增联系人
+	public void addUserContact(UserContacts userContacts);
+    -->
+    <insert id="addUserContact" parameterType="com.baoidc.idcserver.po.UserContacts">
+    	insert into user_contacts(user_id,real_name,fixedlink_phone,mobile_phone,contact_email,qq_num)
+    	values(#{userId},#{realName},#{fixedlinkPhone},#{mobilePhone},#{contactEmail},#{qqNum})
+    </insert>
+    
+<!-- 
+	//修改联系人
+	public void updateUserContact(UserContacts userContacts);
+ -->
+ 	<update id="updateUserContact" parameterType="com.baoidc.idcserver.po.UserContacts">
+ 		update user_contacts set real_name = #{realName}, fixedlink_phone = #{fixedlinkPhone},mobile_phone = #{mobilePhone},contact_email = #{contactEmail},
+ 		qq_num = #{qqNum}
+ 		where id = #{id}
+ 	</update>
+ 	
+<!-- 
+	//删除联系人
+	public void deleteUserContact(Integer userContactsId);
+ -->
+ 	<delete id="deleteUserContact" parameterType="int">
+ 		delete from user_contacts where id = #{userContactsId}
+ 	</delete>	
+<!-- 
+	//查询所有联系人
+	public List<UserContacts> getUserContacts(Integer userId);
+ -->	
+	<select id="getUserContacts" parameterType="int" resultMap="UserContactsMap">
+		select id,user_id,real_name,fixedlink_phone,mobile_phone,contact_email,qq_num from user_contacts where user_id = #{userId}
+	</select>
+	
+	<!-- 
+		//修改密码
+	public void updateUserPassword(@Param("userId")Integer userId,@Param("password")String password);
+	 -->
+	<update id="updateUserPassword">
+		update user set password = #{password} where id = #{userId}
+	</update>	
+	
+	<!-- 
+		//修改手机号码
+		public void updateUserPhone(@Param("userId")Integer userId,@Param("phone")String phone);
+	 -->
+	 <update id="updateUserPhone">
+	 	update user set phone_num = #{phone} where id = #{userId}
+	 </update>
+	 
+	 <!-- 
+	 //修改QQ号码
+	public void updateUserQQNum(@Param("userId")Integer userId,@Param("qqNum")String qqNum);
+	  -->
+	 <update id="updateUserQQNum">
+	 	update user set qq_num = #{qqNum} where id = #{userId}
+	 </update>
+	 
+	 <!-- 
+	 //修改支付宝账号
+	public void updateUserzfbao(@Param("userId")Integer userId,@Param("zfbao")String zfbao);
+	  -->
+	 <update id="updateUserzfbao">
+	 	update user set zfbao = #{zfbao} where id = #{userId}
+	 </update>
+	 <!-- 
+	 	//给用户分配客户经理
+	public void allotManage(@Param("userId")Integer userId,@Param("manageId")int manageId);
+	  -->
+	  <update id="allotManage">
+	  	update user set customer_manager_id = #{manageId} where id = #{userId}
+	  </update>
+</mapper>

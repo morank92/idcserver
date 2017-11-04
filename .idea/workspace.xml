@@ -1,0 +1,1332 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" readonly="true" id="2610c817-4197-4c3a-a84d-1bf66cce5b26" name="Default" comment="" />
+    <ignored path="$PROJECT_DIR$/target/" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="TRACKING_ENABLED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="ProductRestService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/rest/service/ProductRestService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="0">
+              <caret line="108" column="68" lean-forward="false" selection-start-line="108" selection-start-column="68" selection-end-line="108" selection-end-column="68" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserLogAspect.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/core/aspect/UserLogAspect.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="46">
+              <caret line="31" column="49" lean-forward="false" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SDKUtil.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/acp/sdk/SDKUtil.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="33" column="22" lean-forward="true" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#3243#3259#0" expanded="true" />
+                <element signature="e#4878#4894#0" expanded="true" />
+                <element signature="e#6865#6881#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="IdcServerUtils.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/core/IdcServerUtils.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="161">
+              <caret line="10" column="34" lean-forward="false" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UserRestService.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/rest/service/UserRestService.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="4416">
+              <caret line="222" column="9" lean-forward="false" selection-start-line="222" selection-start-column="9" selection-end-line="222" selection-end-column="9" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="AssetManageMapper.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/mapping/AssetManageMapper.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="2070">
+              <caret line="90" column="55" lean-forward="false" selection-start-line="90" selection-start-column="55" selection-end-line="90" selection-end-column="55" />
+              <folding>
+                <marker date="1499500119524" expanded="true" signature="2779:2839" ph="select id,us... user" />
+                <marker date="1499500119524" expanded="true" signature="2999:3131" ph="select start... device_instance" />
+                <marker date="1499500119524" expanded="true" signature="3277:3431" ph="select ip_id... instance_ip" />
+                <marker date="1499500119524" expanded="true" signature="3573:3693" ph="select id,st... chest_ip_range" />
+                <marker date="1499500119524" expanded="true" signature="3827:3925" ph="select chest... t_gateway" />
+                <marker date="1499500119524" expanded="true" signature="4069:4175" ph="select chest... t_subnetmask" />
+                <marker date="1499500119524" expanded="true" signature="4287:4446" ph="select chest... chest" />
+                <marker date="1499500119524" expanded="true" signature="7785:7853" ph="select chest... chest" />
+                <marker date="1499500119524" expanded="true" signature="7992:8150" ph="select ip_id... instance_ip" />
+                <marker date="1499500119524" expanded="true" signature="8293:8400" ph="select chest... server_port" />
+                <marker date="1499500119524" expanded="true" signature="8567:8701" ph="select start... device_instance" />
+                <marker date="1499500119524" expanded="true" signature="8847:8907" ph="select id,us... user" />
+                <marker date="1499500119524" expanded="true" signature="9041:9105" ph="select id,us... user" />
+                <marker date="1499500119524" expanded="true" signature="9375:9496" ph="select from instance_param" />
+                <marker date="1499500119524" expanded="true" signature="9701:9808" ph="select memor... memory_bank" />
+                <marker date="1499500119524" expanded="true" signature="10003:10110" ph="insert into memory_bank... " />
+                <marker date="1499500119524" expanded="true" signature="10345:10452" ph="select count... memory_bank" />
+                <marker date="1499500119524" expanded="true" signature="10622:10698" ph="update memor... " />
+                <marker date="1499500119524" expanded="true" signature="10840:10893" ph="delete from " />
+                <marker date="1499500119524" expanded="true" signature="11081:11185" ph="select disk_... disk" />
+                <marker date="1499500119524" expanded="true" signature="11350:11417" ph="update disk " />
+                <marker date="1499500119524" expanded="true" signature="11648:11765" ph="insert into disk... " />
+                <marker date="1499500119524" expanded="true" signature="12005:12121" ph="select count... disk" />
+                <marker date="1499500119524" expanded="true" signature="12253:12295" ph="delete from " />
+                <marker date="1499500119524" expanded="true" signature="13728:13768" ph="delete from " />
+                <marker date="1499500119524" expanded="true" signature="13929:14989" ph="update chest... " />
+                <marker date="1499500119524" expanded="true" signature="15198:15316" ph="SELECT ip_bu... instance_ip" />
+                <marker date="1499500119524" expanded="true" signature="15649:15740" ph="delete from " />
+                <marker date="1499500119524" expanded="true" signature="15901:15987" ph="delete from " />
+                <marker date="1499500119524" expanded="true" signature="16155:16211" ph="select use_s... chest" />
+                <marker date="1499500119524" expanded="true" signature="16351:16402" ph="delete from " />
+                <marker date="1499500119524" expanded="true" signature="17421:17475" ph="delete from " />
+                <marker date="1499500119524" expanded="true" signature="18361:18410" ph="delete from " />
+                <marker date="1499500119524" expanded="true" signature="18565:18617" ph="delete from " />
+                <marker date="1499500119524" expanded="true" signature="18798:18871" ph="select count... chest" />
+                <marker date="1499500119524" expanded="true" signature="21936:22033" ph="select from servers" />
+                <marker date="1499500119524" expanded="true" signature="22202:22291" ph="select from servers" />
+                <marker date="1499500119524" expanded="true" signature="23267:23361" ph="update insta... " />
+                <marker date="1499500119524" expanded="true" signature="23491:23534" ph="delete from " />
+                <marker date="1499500119524" expanded="true" signature="23700:24497" ph="update serve... " />
+                <marker date="1499500119524" expanded="true" signature="24622:24671" ph="delete from " />
+                <marker date="1499500119524" expanded="true" signature="24807:24892" ph="update insta... " />
+                <marker date="1499500119524" expanded="true" signature="25026:25096" ph="update insta... " />
+                <marker date="1499500119524" expanded="true" signature="25206:25324" ph="update serve... " />
+                <marker date="1499500119524" expanded="true" signature="25519:25690" ph="select ip_id... instance_ip" />
+                <marker date="1499500119524" expanded="true" signature="25844:25905" ph="select ip_st... instance_ip" />
+                <marker date="1499500119524" expanded="true" signature="26034:26140" ph="select from servers" />
+                <marker date="1499500119524" expanded="true" signature="26654:26740" ph="select count... server_port" />
+                <marker date="1499500119524" expanded="true" signature="26886:26939" ph="delete from " />
+                <marker date="1499500119524" expanded="true" signature="27104:27185" ph="update insta... " />
+                <marker date="1499500119524" expanded="true" signature="27333:27384" ph="delete from " />
+                <marker date="1499500119524" expanded="true" signature="27529:27576" ph="delete from " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="pom.xml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/pom.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="260">
+              <caret line="264" column="43" lean-forward="false" selection-start-line="264" selection-start-column="43" selection-end-line="264" selection-end-column="43" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+  </component>
+  <component name="GradleLocalSettings">
+    <option name="externalProjectsViewState">
+      <projects_view />
+    </option>
+  </component>
+  <component name="IdeDocumentHistory">
+    <option name="CHANGED_PATHS">
+      <list>
+        <option value="$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/rest/service/ProductRestService.java" />
+        <option value="$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar!/org/apache/commons/lang3/StringUtils.class" />
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/acp/sdk/SDKUtil.java" />
+      </list>
+    </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
+  </component>
+  <component name="MavenImportPreferences">
+    <option name="generalSettings">
+      <MavenGeneralSettings>
+        <option name="localRepository" value="C:\MavenRepository" />
+        <option name="mavenHome" value="C:/Java/apache-maven-3.3.9" />
+        <option name="userSettingsFile" value="C:\Users\Jiangyongjie\.m2\settings.xml" />
+      </MavenGeneralSettings>
+    </option>
+  </component>
+  <component name="ProjectFrameBounds" extendedState="6">
+    <option name="x" value="-8" />
+    <option name="y" value="-8" />
+    <option name="width" value="1936" />
+    <option name="height" value="1056" />
+  </component>
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectView">
+    <navigator currentView="ProjectPane" proportions="" version="1">
+      <flattenPackages />
+      <showMembers />
+      <showModules />
+      <showLibraryContents />
+      <hideEmptyPackages />
+      <abbreviatePackageNames />
+      <autoscrollToSource />
+      <autoscrollFromSource />
+      <sortByType />
+      <manualOrder />
+      <foldersAlwaysOnTop value="true" />
+    </navigator>
+    <panes>
+      <pane id="PackagesPane" />
+      <pane id="AndroidView" />
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="idcserver" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idcserver" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idcserver" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idcserver" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idcserver" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idcserver" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idcserver" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idcserver" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idcserver" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idcserver" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idcserver" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idcserver" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="idcserver" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="idcserver" type="b2602c69:ProjectViewProjectNode" />
+              <item name="idcserver" type="462c0819:PsiDirectoryNode" />
+              <item name="src" type="462c0819:PsiDirectoryNode" />
+              <item name="main" type="462c0819:PsiDirectoryNode" />
+              <item name="java" type="462c0819:PsiDirectoryNode" />
+              <item name="com" type="462c0819:PsiDirectoryNode" />
+              <item name="idcserver" type="462c0819:PsiDirectoryNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="Scope" />
+      <pane id="Scratches" />
+    </panes>
+  </component>
+  <component name="PropertiesComponent">
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../backend-angular" />
+    <property name="project.structure.last.edited" value="Project" />
+    <property name="project.structure.proportion" value="0.15" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="preferences.sourceCode.Java" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="aspect.path.notification.shown" value="true" />
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="Tomcat Server.tomcat">
+    <configuration default="true" type="Applet" factoryName="Applet">
+      <option name="HTML_USED" value="false" />
+      <option name="WIDTH" value="400" />
+      <option name="HEIGHT" value="300" />
+      <option name="POLICY_FILE" value="$APPLICATION_HOME_DIR$/bin/appletviewer.policy" />
+      <module />
+    </configuration>
+    <configuration default="true" type="Application" factoryName="Application">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="" />
+      <envs />
+    </configuration>
+    <configuration default="true" type="JUnit" factoryName="JUnit">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="TEST_OBJECT" value="class" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <envs />
+      <patterns />
+    </configuration>
+    <configuration default="true" type="#org.jetbrains.idea.devkit.run.PluginConfigurationType" factoryName="Plugin">
+      <module name="" />
+      <option name="VM_PARAMETERS" value="-Xmx512m -Xms256m -XX:MaxPermSize=250m -ea" />
+      <option name="PROGRAM_PARAMETERS" />
+      <predefined_log_file id="idea.log" enabled="true" />
+    </configuration>
+    <configuration default="true" type="Remote" factoryName="Remote">
+      <option name="USE_SOCKET_TRANSPORT" value="true" />
+      <option name="SERVER_MODE" value="false" />
+      <option name="SHMEM_ADDRESS" value="javadebug" />
+      <option name="HOST" value="localhost" />
+      <option name="PORT" value="5005" />
+    </configuration>
+    <configuration default="true" type="TestNG" factoryName="TestNG">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <module name="" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="SUITE_NAME" />
+      <option name="PACKAGE_NAME" />
+      <option name="MAIN_CLASS_NAME" />
+      <option name="METHOD_NAME" />
+      <option name="GROUP_NAME" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <option name="VM_PARAMETERS" value="-ea" />
+      <option name="PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$MODULE_DIR$" />
+      <option name="OUTPUT_DIRECTORY" />
+      <option name="ANNOTATION_TYPE" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <option name="TEST_SEARCH_SCOPE">
+        <value defaultName="singleModule" />
+      </option>
+      <option name="USE_DEFAULT_REPORTERS" value="false" />
+      <option name="PROPERTIES_FILE" />
+      <envs />
+      <properties />
+      <listeners />
+    </configuration>
+    <configuration name="tomcat" type="#com.intellij.j2ee.web.tomcat.TomcatRunConfigurationFactory" factoryName="Local" APPLICATION_SERVER_NAME="Tomcat 8.0.36" ALTERNATIVE_JRE_ENABLED="true" ALTERNATIVE_JRE_PATH="C:/Java/jdk">
+      <option name="UPDATING_POLICY" value="restart-server" />
+      <deployment />
+      <server-settings>
+        <option name="BASE_DIRECTORY_NAME" value="Unnamed_idcserver" />
+      </server-settings>
+      <predefined_log_file id="Tomcat" enabled="true" />
+      <predefined_log_file id="Tomcat Catalina" enabled="true" />
+      <predefined_log_file id="Tomcat Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Host Manager" enabled="false" />
+      <predefined_log_file id="Tomcat Localhost Access" enabled="false" />
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+      <RunnerSettings RunnerId="Debug">
+        <option name="DEBUG_PORT" value="62982" />
+      </RunnerSettings>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Cover">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Debug">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+      <ConfigurationWrapper VM_VAR="JAVA_OPTS" RunnerId="Run">
+        <option name="USE_ENV_VARIABLES" value="true" />
+        <STARTUP>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </STARTUP>
+        <SHUTDOWN>
+          <option name="USE_DEFAULT" value="true" />
+          <option name="SCRIPT" value="" />
+          <option name="VM_PARAMETERS" value="" />
+          <option name="PROGRAM_PARAMETERS" value="" />
+        </SHUTDOWN>
+      </ConfigurationWrapper>
+    </configuration>
+  </component>
+  <component name="ShelveChangesManager" show_recycled="false">
+    <option name="remove_strategy" value="false" />
+  </component>
+  <component name="SvnConfiguration" cleanupOnStartRun="true">
+    <configuration>C:\Users\Jiangyongjie\AppData\Roaming\Subversion</configuration>
+    <supportedVersion>125</supportedVersion>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="2610c817-4197-4c3a-a84d-1bf66cce5b26" name="Default" comment="" />
+      <created>1507530245404</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1507530245404</updated>
+      <workItem from="1507542012387" duration="2205000" />
+      <workItem from="1508307614217" duration="3993000" />
+      <workItem from="1508377045112" duration="1889000" />
+      <workItem from="1509786082911" duration="2682000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TimeTrackingManager">
+    <option name="totallyTimeSpent" value="10769000" />
+  </component>
+  <component name="ToolWindowManager">
+    <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
+    <editor active="true" />
+    <layout>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Java Enterprise" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21927084" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Bean Validation" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+    </layout>
+    <layout-to-restore>
+      <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32946146" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Palette&#9;" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Image Layers" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2640625" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
+    </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="VcsContentAnnotationSettings">
+    <option name="myLimit" value="2678400000" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager />
+    <watches-manager />
+  </component>
+  <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/rest/service/ProductRestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2139">
+          <caret line="108" column="68" lean-forward="false" selection-start-line="108" selection-start-column="68" selection-end-line="108" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/core/aspect/UserLogAspect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="31" column="49" lean-forward="false" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/core/IdcServerUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="10" column="34" lean-forward="false" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/rest/service/UserRestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4416">
+          <caret line="222" column="9" lean-forward="false" selection-start-line="222" selection-start-column="9" selection-end-line="222" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/mapping/AssetManageMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2070">
+          <caret line="90" column="55" lean-forward="false" selection-start-line="90" selection-start-column="55" selection-end-line="90" selection-end-column="55" />
+          <folding>
+            <marker date="1499500119524" expanded="true" signature="2779:2839" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="2999:3131" ph="select start... device_instance" />
+            <marker date="1499500119524" expanded="true" signature="3277:3431" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="3573:3693" ph="select id,st... chest_ip_range" />
+            <marker date="1499500119524" expanded="true" signature="3827:3925" ph="select chest... t_gateway" />
+            <marker date="1499500119524" expanded="true" signature="4069:4175" ph="select chest... t_subnetmask" />
+            <marker date="1499500119524" expanded="true" signature="4287:4446" ph="select chest... chest" />
+            <marker date="1499500119524" expanded="true" signature="7785:7853" ph="select chest... chest" />
+            <marker date="1499500119524" expanded="true" signature="7992:8150" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="8293:8400" ph="select chest... server_port" />
+            <marker date="1499500119524" expanded="true" signature="8567:8701" ph="select start... device_instance" />
+            <marker date="1499500119524" expanded="true" signature="8847:8907" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="9041:9105" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="9375:9496" ph="select from instance_param" />
+            <marker date="1499500119524" expanded="true" signature="9701:9808" ph="select memor... memory_bank" />
+            <marker date="1499500119524" expanded="true" signature="10003:10110" ph="insert into memory_bank... " />
+            <marker date="1499500119524" expanded="true" signature="10345:10452" ph="select count... memory_bank" />
+            <marker date="1499500119524" expanded="true" signature="10622:10698" ph="update memor... " />
+            <marker date="1499500119524" expanded="true" signature="10840:10893" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="11081:11185" ph="select disk_... disk" />
+            <marker date="1499500119524" expanded="true" signature="11350:11417" ph="update disk " />
+            <marker date="1499500119524" expanded="true" signature="11648:11765" ph="insert into disk... " />
+            <marker date="1499500119524" expanded="true" signature="12005:12121" ph="select count... disk" />
+            <marker date="1499500119524" expanded="true" signature="12253:12295" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="13728:13768" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="13929:14989" ph="update chest... " />
+            <marker date="1499500119524" expanded="true" signature="15198:15316" ph="SELECT ip_bu... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="15649:15740" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="15901:15987" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="16155:16211" ph="select use_s... chest" />
+            <marker date="1499500119524" expanded="true" signature="16351:16402" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="17421:17475" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18361:18410" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18565:18617" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18798:18871" ph="select count... chest" />
+            <marker date="1499500119524" expanded="true" signature="21936:22033" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="22202:22291" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="23267:23361" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="23491:23534" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="23700:24497" ph="update serve... " />
+            <marker date="1499500119524" expanded="true" signature="24622:24671" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="24807:24892" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="25026:25096" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="25206:25324" ph="update serve... " />
+            <marker date="1499500119524" expanded="true" signature="25519:25690" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="25844:25905" ph="select ip_st... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="26034:26140" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="26654:26740" ph="select count... server_port" />
+            <marker date="1499500119524" expanded="true" signature="26886:26939" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="27104:27185" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="27333:27384" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="27529:27576" ph="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1564">
+          <caret line="68" column="57" lean-forward="false" selection-start-line="68" selection-start-column="57" selection-end-line="68" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/acp/sdk/SDKUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="667">
+          <caret line="29" column="7" lean-forward="false" selection-start-line="29" selection-start-column="7" selection-end-line="29" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3243#3259#0" expanded="true" />
+            <element signature="e#4878#4894#0" expanded="true" />
+            <element signature="e#6865#6881#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/rest/service/ProductRestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2139">
+          <caret line="108" column="68" lean-forward="false" selection-start-line="108" selection-start-column="68" selection-end-line="108" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/core/aspect/UserLogAspect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="31" column="49" lean-forward="false" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/core/IdcServerUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="10" column="34" lean-forward="true" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/rest/service/UserRestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4416">
+          <caret line="222" column="9" lean-forward="false" selection-start-line="222" selection-start-column="9" selection-end-line="222" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/mapping/AssetManageMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2070">
+          <caret line="90" column="55" lean-forward="false" selection-start-line="90" selection-start-column="55" selection-end-line="90" selection-end-column="55" />
+          <folding>
+            <marker date="1499500119524" expanded="true" signature="2779:2839" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="2999:3131" ph="select start... device_instance" />
+            <marker date="1499500119524" expanded="true" signature="3277:3431" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="3573:3693" ph="select id,st... chest_ip_range" />
+            <marker date="1499500119524" expanded="true" signature="3827:3925" ph="select chest... t_gateway" />
+            <marker date="1499500119524" expanded="true" signature="4069:4175" ph="select chest... t_subnetmask" />
+            <marker date="1499500119524" expanded="true" signature="4287:4446" ph="select chest... chest" />
+            <marker date="1499500119524" expanded="true" signature="7785:7853" ph="select chest... chest" />
+            <marker date="1499500119524" expanded="true" signature="7992:8150" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="8293:8400" ph="select chest... server_port" />
+            <marker date="1499500119524" expanded="true" signature="8567:8701" ph="select start... device_instance" />
+            <marker date="1499500119524" expanded="true" signature="8847:8907" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="9041:9105" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="9375:9496" ph="select from instance_param" />
+            <marker date="1499500119524" expanded="true" signature="9701:9808" ph="select memor... memory_bank" />
+            <marker date="1499500119524" expanded="true" signature="10003:10110" ph="insert into memory_bank... " />
+            <marker date="1499500119524" expanded="true" signature="10345:10452" ph="select count... memory_bank" />
+            <marker date="1499500119524" expanded="true" signature="10622:10698" ph="update memor... " />
+            <marker date="1499500119524" expanded="true" signature="10840:10893" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="11081:11185" ph="select disk_... disk" />
+            <marker date="1499500119524" expanded="true" signature="11350:11417" ph="update disk " />
+            <marker date="1499500119524" expanded="true" signature="11648:11765" ph="insert into disk... " />
+            <marker date="1499500119524" expanded="true" signature="12005:12121" ph="select count... disk" />
+            <marker date="1499500119524" expanded="true" signature="12253:12295" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="13728:13768" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="13929:14989" ph="update chest... " />
+            <marker date="1499500119524" expanded="true" signature="15198:15316" ph="SELECT ip_bu... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="15649:15740" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="15901:15987" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="16155:16211" ph="select use_s... chest" />
+            <marker date="1499500119524" expanded="true" signature="16351:16402" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="17421:17475" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18361:18410" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18565:18617" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18798:18871" ph="select count... chest" />
+            <marker date="1499500119524" expanded="true" signature="21936:22033" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="22202:22291" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="23267:23361" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="23491:23534" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="23700:24497" ph="update serve... " />
+            <marker date="1499500119524" expanded="true" signature="24622:24671" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="24807:24892" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="25026:25096" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="25206:25324" ph="update serve... " />
+            <marker date="1499500119524" expanded="true" signature="25519:25690" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="25844:25905" ph="select ip_st... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="26034:26140" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="26654:26740" ph="select count... server_port" />
+            <marker date="1499500119524" expanded="true" signature="26886:26939" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="27104:27185" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="27333:27384" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="27529:27576" ph="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1564">
+          <caret line="68" column="57" lean-forward="false" selection-start-line="68" selection-start-column="57" selection-end-line="68" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/acp/sdk/SDKUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="713">
+          <caret line="31" column="7" lean-forward="true" selection-start-line="31" selection-start-column="7" selection-end-line="31" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3243#3259#0" expanded="true" />
+            <element signature="e#4878#4894#0" expanded="true" />
+            <element signature="e#6865#6881#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/rest/service/ProductRestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2139">
+          <caret line="108" column="68" lean-forward="false" selection-start-line="108" selection-start-column="68" selection-end-line="108" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/rest/service/UserRestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4416">
+          <caret line="222" column="9" lean-forward="false" selection-start-line="222" selection-start-column="9" selection-end-line="222" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/mapping/AssetManageMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2070">
+          <caret line="90" column="55" lean-forward="false" selection-start-line="90" selection-start-column="55" selection-end-line="90" selection-end-column="55" />
+          <folding>
+            <marker date="1499500119524" expanded="true" signature="2779:2839" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="2999:3131" ph="select start... device_instance" />
+            <marker date="1499500119524" expanded="true" signature="3277:3431" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="3573:3693" ph="select id,st... chest_ip_range" />
+            <marker date="1499500119524" expanded="true" signature="3827:3925" ph="select chest... t_gateway" />
+            <marker date="1499500119524" expanded="true" signature="4069:4175" ph="select chest... t_subnetmask" />
+            <marker date="1499500119524" expanded="true" signature="4287:4446" ph="select chest... chest" />
+            <marker date="1499500119524" expanded="true" signature="7785:7853" ph="select chest... chest" />
+            <marker date="1499500119524" expanded="true" signature="7992:8150" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="8293:8400" ph="select chest... server_port" />
+            <marker date="1499500119524" expanded="true" signature="8567:8701" ph="select start... device_instance" />
+            <marker date="1499500119524" expanded="true" signature="8847:8907" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="9041:9105" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="9375:9496" ph="select from instance_param" />
+            <marker date="1499500119524" expanded="true" signature="9701:9808" ph="select memor... memory_bank" />
+            <marker date="1499500119524" expanded="true" signature="10003:10110" ph="insert into memory_bank... " />
+            <marker date="1499500119524" expanded="true" signature="10345:10452" ph="select count... memory_bank" />
+            <marker date="1499500119524" expanded="true" signature="10622:10698" ph="update memor... " />
+            <marker date="1499500119524" expanded="true" signature="10840:10893" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="11081:11185" ph="select disk_... disk" />
+            <marker date="1499500119524" expanded="true" signature="11350:11417" ph="update disk " />
+            <marker date="1499500119524" expanded="true" signature="11648:11765" ph="insert into disk... " />
+            <marker date="1499500119524" expanded="true" signature="12005:12121" ph="select count... disk" />
+            <marker date="1499500119524" expanded="true" signature="12253:12295" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="13728:13768" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="13929:14989" ph="update chest... " />
+            <marker date="1499500119524" expanded="true" signature="15198:15316" ph="SELECT ip_bu... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="15649:15740" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="15901:15987" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="16155:16211" ph="select use_s... chest" />
+            <marker date="1499500119524" expanded="true" signature="16351:16402" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="17421:17475" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18361:18410" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18565:18617" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18798:18871" ph="select count... chest" />
+            <marker date="1499500119524" expanded="true" signature="21936:22033" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="22202:22291" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="23267:23361" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="23491:23534" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="23700:24497" ph="update serve... " />
+            <marker date="1499500119524" expanded="true" signature="24622:24671" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="24807:24892" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="25026:25096" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="25206:25324" ph="update serve... " />
+            <marker date="1499500119524" expanded="true" signature="25519:25690" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="25844:25905" ph="select ip_st... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="26034:26140" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="26654:26740" ph="select count... server_port" />
+            <marker date="1499500119524" expanded="true" signature="26886:26939" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="27104:27185" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="27333:27384" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="27529:27576" ph="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1564">
+          <caret line="68" column="57" lean-forward="true" selection-start-line="68" selection-start-column="57" selection-end-line="68" selection-end-column="57" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/core/aspect/UserLogAspect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="276">
+          <caret line="12" column="32" lean-forward="true" selection-start-line="12" selection-start-column="32" selection-end-line="12" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/rest/service/ProductRestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/mapping/AssetManageMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1083">
+          <caret line="57" column="17" lean-forward="false" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
+          <folding>
+            <marker date="1499500119524" expanded="true" signature="2779:2839" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="2999:3131" ph="select start... device_instance" />
+            <marker date="1499500119524" expanded="true" signature="3277:3431" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="3573:3693" ph="select id,st... chest_ip_range" />
+            <marker date="1499500119524" expanded="true" signature="3827:3925" ph="select chest... t_gateway" />
+            <marker date="1499500119524" expanded="true" signature="4069:4175" ph="select chest... t_subnetmask" />
+            <marker date="1499500119524" expanded="true" signature="4287:4446" ph="select chest... chest" />
+            <marker date="1499500119524" expanded="true" signature="7785:7853" ph="select chest... chest" />
+            <marker date="1499500119524" expanded="true" signature="7992:8150" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="8293:8400" ph="select chest... server_port" />
+            <marker date="1499500119524" expanded="true" signature="8567:8701" ph="select start... device_instance" />
+            <marker date="1499500119524" expanded="true" signature="8847:8907" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="9041:9105" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="9375:9496" ph="select from instance_param" />
+            <marker date="1499500119524" expanded="true" signature="9701:9808" ph="select memor... memory_bank" />
+            <marker date="1499500119524" expanded="true" signature="10003:10110" ph="insert into memory_bank... " />
+            <marker date="1499500119524" expanded="true" signature="10345:10452" ph="select count... memory_bank" />
+            <marker date="1499500119524" expanded="true" signature="10622:10698" ph="update memor... " />
+            <marker date="1499500119524" expanded="true" signature="10840:10893" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="11081:11185" ph="select disk_... disk" />
+            <marker date="1499500119524" expanded="true" signature="11350:11417" ph="update disk " />
+            <marker date="1499500119524" expanded="true" signature="11648:11765" ph="insert into disk... " />
+            <marker date="1499500119524" expanded="true" signature="12005:12121" ph="select count... disk" />
+            <marker date="1499500119524" expanded="true" signature="12253:12295" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="13728:13768" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="13929:14989" ph="update chest... " />
+            <marker date="1499500119524" expanded="true" signature="15198:15316" ph="SELECT ip_bu... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="15649:15740" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="15901:15987" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="16155:16211" ph="select use_s... chest" />
+            <marker date="1499500119524" expanded="true" signature="16351:16402" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="17421:17475" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18361:18410" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18565:18617" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18798:18871" ph="select count... chest" />
+            <marker date="1499500119524" expanded="true" signature="21936:22033" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="22202:22291" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="23267:23361" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="23491:23534" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="23700:24497" ph="update serve... " />
+            <marker date="1499500119524" expanded="true" signature="24622:24671" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="24807:24892" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="25026:25096" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="25206:25324" ph="update serve... " />
+            <marker date="1499500119524" expanded="true" signature="25519:25690" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="25844:25905" ph="select ip_st... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="26034:26140" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="26654:26740" ph="select count... server_port" />
+            <marker date="1499500119524" expanded="true" signature="26886:26939" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="27104:27185" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="27333:27384" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="27529:27576" ph="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1444">
+          <caret line="76" column="20" lean-forward="false" selection-start-line="76" selection-start-column="20" selection-end-line="76" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/rest/service/ProductRestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/mapping/AssetManageMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1083">
+          <caret line="57" column="17" lean-forward="false" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
+          <folding>
+            <marker date="1499500119524" expanded="true" signature="2779:2839" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="2999:3131" ph="select start... device_instance" />
+            <marker date="1499500119524" expanded="true" signature="3277:3431" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="3573:3693" ph="select id,st... chest_ip_range" />
+            <marker date="1499500119524" expanded="true" signature="3827:3925" ph="select chest... t_gateway" />
+            <marker date="1499500119524" expanded="true" signature="4069:4175" ph="select chest... t_subnetmask" />
+            <marker date="1499500119524" expanded="true" signature="4287:4446" ph="select chest... chest" />
+            <marker date="1499500119524" expanded="true" signature="7785:7853" ph="select chest... chest" />
+            <marker date="1499500119524" expanded="true" signature="7992:8150" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="8293:8400" ph="select chest... server_port" />
+            <marker date="1499500119524" expanded="true" signature="8567:8701" ph="select start... device_instance" />
+            <marker date="1499500119524" expanded="true" signature="8847:8907" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="9041:9105" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="9375:9496" ph="select from instance_param" />
+            <marker date="1499500119524" expanded="true" signature="9701:9808" ph="select memor... memory_bank" />
+            <marker date="1499500119524" expanded="true" signature="10003:10110" ph="insert into memory_bank... " />
+            <marker date="1499500119524" expanded="true" signature="10345:10452" ph="select count... memory_bank" />
+            <marker date="1499500119524" expanded="true" signature="10622:10698" ph="update memor... " />
+            <marker date="1499500119524" expanded="true" signature="10840:10893" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="11081:11185" ph="select disk_... disk" />
+            <marker date="1499500119524" expanded="true" signature="11350:11417" ph="update disk " />
+            <marker date="1499500119524" expanded="true" signature="11648:11765" ph="insert into disk... " />
+            <marker date="1499500119524" expanded="true" signature="12005:12121" ph="select count... disk" />
+            <marker date="1499500119524" expanded="true" signature="12253:12295" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="13728:13768" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="13929:14989" ph="update chest... " />
+            <marker date="1499500119524" expanded="true" signature="15198:15316" ph="SELECT ip_bu... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="15649:15740" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="15901:15987" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="16155:16211" ph="select use_s... chest" />
+            <marker date="1499500119524" expanded="true" signature="16351:16402" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="17421:17475" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18361:18410" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18565:18617" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18798:18871" ph="select count... chest" />
+            <marker date="1499500119524" expanded="true" signature="21936:22033" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="22202:22291" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="23267:23361" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="23491:23534" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="23700:24497" ph="update serve... " />
+            <marker date="1499500119524" expanded="true" signature="24622:24671" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="24807:24892" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="25026:25096" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="25206:25324" ph="update serve... " />
+            <marker date="1499500119524" expanded="true" signature="25519:25690" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="25844:25905" ph="select ip_st... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="26034:26140" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="26654:26740" ph="select count... server_port" />
+            <marker date="1499500119524" expanded="true" signature="26886:26939" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="27104:27185" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="27333:27384" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="27529:27576" ph="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="54" lean-forward="false" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/rest/service/ProductRestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/mapping/AssetManageMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1083">
+          <caret line="57" column="17" lean-forward="true" selection-start-line="57" selection-start-column="17" selection-end-line="57" selection-end-column="17" />
+          <folding>
+            <marker date="1499500119524" expanded="true" signature="2779:2839" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="2999:3131" ph="select start... device_instance" />
+            <marker date="1499500119524" expanded="true" signature="3277:3431" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="3573:3693" ph="select id,st... chest_ip_range" />
+            <marker date="1499500119524" expanded="true" signature="3827:3925" ph="select chest... t_gateway" />
+            <marker date="1499500119524" expanded="true" signature="4069:4175" ph="select chest... t_subnetmask" />
+            <marker date="1499500119524" expanded="true" signature="4287:4446" ph="select chest... chest" />
+            <marker date="1499500119524" expanded="true" signature="7785:7853" ph="select chest... chest" />
+            <marker date="1499500119524" expanded="true" signature="7992:8150" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="8293:8400" ph="select chest... server_port" />
+            <marker date="1499500119524" expanded="true" signature="8567:8701" ph="select start... device_instance" />
+            <marker date="1499500119524" expanded="true" signature="8847:8907" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="9041:9105" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="9375:9496" ph="select from instance_param" />
+            <marker date="1499500119524" expanded="true" signature="9701:9808" ph="select memor... memory_bank" />
+            <marker date="1499500119524" expanded="true" signature="10003:10110" ph="insert into memory_bank... " />
+            <marker date="1499500119524" expanded="true" signature="10345:10452" ph="select count... memory_bank" />
+            <marker date="1499500119524" expanded="true" signature="10622:10698" ph="update memor... " />
+            <marker date="1499500119524" expanded="true" signature="10840:10893" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="11081:11185" ph="select disk_... disk" />
+            <marker date="1499500119524" expanded="true" signature="11350:11417" ph="update disk " />
+            <marker date="1499500119524" expanded="true" signature="11648:11765" ph="insert into disk... " />
+            <marker date="1499500119524" expanded="true" signature="12005:12121" ph="select count... disk" />
+            <marker date="1499500119524" expanded="true" signature="12253:12295" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="13728:13768" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="13929:14989" ph="update chest... " />
+            <marker date="1499500119524" expanded="true" signature="15198:15316" ph="SELECT ip_bu... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="15649:15740" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="15901:15987" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="16155:16211" ph="select use_s... chest" />
+            <marker date="1499500119524" expanded="true" signature="16351:16402" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="17421:17475" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18361:18410" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18565:18617" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18798:18871" ph="select count... chest" />
+            <marker date="1499500119524" expanded="true" signature="21936:22033" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="22202:22291" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="23267:23361" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="23491:23534" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="23700:24497" ph="update serve... " />
+            <marker date="1499500119524" expanded="true" signature="24622:24671" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="24807:24892" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="25026:25096" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="25206:25324" ph="update serve... " />
+            <marker date="1499500119524" expanded="true" signature="25519:25690" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="25844:25905" ph="select ip_st... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="26034:26140" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="26654:26740" ph="select count... server_port" />
+            <marker date="1499500119524" expanded="true" signature="26886:26939" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="27104:27185" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="27333:27384" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="27529:27576" ph="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="266">
+          <caret line="14" column="54" lean-forward="false" selection-start-line="14" selection-start-column="54" selection-end-line="14" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/idcserver.iml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="342">
+          <caret line="21" column="55" lean-forward="false" selection-start-line="21" selection-start-column="55" selection-end-line="21" selection-end-column="55" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/rest/service/ProductRestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="108" column="68" lean-forward="false" selection-start-line="108" selection-start-column="68" selection-end-line="108" selection-end-column="68" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/rest/service/UserRestService.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4416">
+          <caret line="222" column="9" lean-forward="false" selection-start-line="222" selection-start-column="9" selection-end-line="222" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/mapping/AssetManageMapper.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2070">
+          <caret line="90" column="55" lean-forward="false" selection-start-line="90" selection-start-column="55" selection-end-line="90" selection-end-column="55" />
+          <folding>
+            <marker date="1499500119524" expanded="true" signature="2779:2839" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="2999:3131" ph="select start... device_instance" />
+            <marker date="1499500119524" expanded="true" signature="3277:3431" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="3573:3693" ph="select id,st... chest_ip_range" />
+            <marker date="1499500119524" expanded="true" signature="3827:3925" ph="select chest... t_gateway" />
+            <marker date="1499500119524" expanded="true" signature="4069:4175" ph="select chest... t_subnetmask" />
+            <marker date="1499500119524" expanded="true" signature="4287:4446" ph="select chest... chest" />
+            <marker date="1499500119524" expanded="true" signature="7785:7853" ph="select chest... chest" />
+            <marker date="1499500119524" expanded="true" signature="7992:8150" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="8293:8400" ph="select chest... server_port" />
+            <marker date="1499500119524" expanded="true" signature="8567:8701" ph="select start... device_instance" />
+            <marker date="1499500119524" expanded="true" signature="8847:8907" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="9041:9105" ph="select id,us... user" />
+            <marker date="1499500119524" expanded="true" signature="9375:9496" ph="select from instance_param" />
+            <marker date="1499500119524" expanded="true" signature="9701:9808" ph="select memor... memory_bank" />
+            <marker date="1499500119524" expanded="true" signature="10003:10110" ph="insert into memory_bank... " />
+            <marker date="1499500119524" expanded="true" signature="10345:10452" ph="select count... memory_bank" />
+            <marker date="1499500119524" expanded="true" signature="10622:10698" ph="update memor... " />
+            <marker date="1499500119524" expanded="true" signature="10840:10893" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="11081:11185" ph="select disk_... disk" />
+            <marker date="1499500119524" expanded="true" signature="11350:11417" ph="update disk " />
+            <marker date="1499500119524" expanded="true" signature="11648:11765" ph="insert into disk... " />
+            <marker date="1499500119524" expanded="true" signature="12005:12121" ph="select count... disk" />
+            <marker date="1499500119524" expanded="true" signature="12253:12295" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="13728:13768" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="13929:14989" ph="update chest... " />
+            <marker date="1499500119524" expanded="true" signature="15198:15316" ph="SELECT ip_bu... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="15649:15740" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="15901:15987" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="16155:16211" ph="select use_s... chest" />
+            <marker date="1499500119524" expanded="true" signature="16351:16402" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="17421:17475" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18361:18410" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18565:18617" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="18798:18871" ph="select count... chest" />
+            <marker date="1499500119524" expanded="true" signature="21936:22033" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="22202:22291" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="23267:23361" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="23491:23534" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="23700:24497" ph="update serve... " />
+            <marker date="1499500119524" expanded="true" signature="24622:24671" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="24807:24892" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="25026:25096" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="25206:25324" ph="update serve... " />
+            <marker date="1499500119524" expanded="true" signature="25519:25690" ph="select ip_id... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="25844:25905" ph="select ip_st... instance_ip" />
+            <marker date="1499500119524" expanded="true" signature="26034:26140" ph="select from servers" />
+            <marker date="1499500119524" expanded="true" signature="26654:26740" ph="select count... server_port" />
+            <marker date="1499500119524" expanded="true" signature="26886:26939" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="27104:27185" ph="update insta... " />
+            <marker date="1499500119524" expanded="true" signature="27333:27384" ph="delete from " />
+            <marker date="1499500119524" expanded="true" signature="27529:27576" ph="delete from " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/core/aspect/UserLogAspect.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="46">
+          <caret line="31" column="49" lean-forward="false" selection-start-line="31" selection-start-column="49" selection-end-line="31" selection-end-column="49" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/core/IdcServerUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="10" column="34" lean-forward="false" selection-start-line="10" selection-start-column="34" selection-end-line="10" selection-end-column="34" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1.jar!/org/apache/commons/lang3/StringUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="391">
+          <caret line="17" column="13" lean-forward="false" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.1/commons-lang3-3.1-sources.jar!/org/apache/commons/lang3/StringUtils.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1178">
+          <caret line="110" column="13" lean-forward="false" selection-start-line="110" selection-start-column="13" selection-end-line="110" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://$MAVEN_REPOSITORY$/org/apache/commons/commons-lang3/3.6/commons-lang3-3.6.jar!/org/apache/commons/lang3/StringUtils.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="368">
+          <caret line="19" column="13" lean-forward="false" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pom.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="264" column="43" lean-forward="false" selection-start-line="264" selection-start-column="43" selection-end-line="264" selection-end-column="43" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/com/baoidc/idcserver/acp/sdk/SDKUtil.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="161">
+          <caret line="33" column="22" lean-forward="true" selection-start-line="33" selection-start-column="22" selection-end-line="33" selection-end-column="22" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#3243#3259#0" expanded="true" />
+            <element signature="e#4878#4894#0" expanded="true" />
+            <element signature="e#6865#6881#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+  </component>
+  <component name="masterDetails">
+    <states>
+      <state key="ArtifactsStructureConfigurable.UI">
+        <settings>
+          <artifact-editor />
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="FacetStructureConfigurable.UI">
+        <settings>
+          <last-edited>Spring</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="GlobalLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>bin</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="JdkListConfigurable.UI">
+        <settings>
+          <last-edited>1.8</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ModuleStructureConfigurable.UI">
+        <settings>
+          <last-edited>idcserver</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
+          <last-edited>Maven: aopalliance:aopalliance:1.0</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+    </states>
+  </component>
+</project>

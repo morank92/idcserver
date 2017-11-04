@@ -1,0 +1,743 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baoidc.idcserver.dao.AssetManageDAO">
+   	<!-- 内存条的映射 -->
+	 <resultMap type="com.baoidc.idcserver.po.MemoryBank" id="memoryMap">
+	 	<id column="memory_id" property="memoryId"/>
+	 	<result column="memory_type" property="memoryType"/>
+	 	<result column="memory_usable" property="memoryUsable"/>
+	 	<result column="in_host_room" property="inHostRoom"/>
+	 </resultMap>
+	 <!--硬盘的映射-->
+	 <resultMap type="com.baoidc.idcserver.po.Disk" id="diskMap">
+	 	<id column="disk_id" property="diskId"/>
+	 	<result column="disk_type" property="diskType"/>
+	 	<result column="disk_size" property="diskSize"/>
+	 	<result column="disk_usable" property="diskUsable"/>
+	 	<result column="in_host_room" property="inHostRoom"/>
+	 </resultMap>
+	 
+	 <!-- 机柜的映射 -->
+	 <resultMap type="com.baoidc.idcserver.po.Chest" id="chestMap">
+	 	<id column="chest_id" property="chestId"/>
+	 	<result column="chest_number"  property="chestNumber"/>
+	 	<result column="chest_type"  property="chestType"/>
+	 	<result column="create_time"  property="createTime"/>
+	 	<result column="host_room"  property="hostRoom"/>
+	 	<result column="host_room_id"  property="hostRoomId"/>
+	 	<result column="interchanger"  property="interchanger"/>
+	 	<result column="manage_ip"  property="manageIp"/>
+	 	<result column="up_port"  property="upPort"/>
+	 	<result column="remark"  property="remark"/>
+	 	<result column="ddos"  property="ddos"/>
+	 	<result column="band_width"  property="bandWidth"/>
+	 	<result column="power"  property="power"/>
+	 	<result column="use_status"  property="useStatus"/>
+	 	<!-- 查看机柜所对应的  分配给用户的实例 -->
+	 	<association property="deviceInstance" column="chest_id" select="selectChestDeviceInstance" javaType="com.baoidc.idcserver.po.DeviceInstance" />
+	 	<!-- 查看机柜租用给那个用户 -->
+	 	<association property="user" column="user_id" select="selectChestUser" javaType="com.baoidc.idcserver.po.User" />
+	 	<!-- 查询机柜下的ip -->
+	 	<collection property="ipList" column="chest_id" select="selectChestIp" ofType="com.baoidc.idcserver.po.InstanceIp" />
+	 	<!-- 查询机柜下的ip段 -->
+	 	<collection property="chestIpRangeList" column="chest_id" select="selectChestIpRange" ofType="com.baoidc.idcserver.po.ChestIpRange"></collection>
+	 	<!-- 查询机柜的网关 -->
+	 	<collection property="gatewayList" column="chest_id" select="selectChestGateway" ofType="com.baoidc.idcserver.po.Gateway"></collection>
+	 	<!-- 查询机柜下的子网掩码 -->
+	 	<collection property="subnetmaskList" column="chest_id" select="selectChestSubnetmask" ofType="com.baoidc.idcserver.po.Subnetmask"></collection>
+	 	
+	 </resultMap>
+	 	<!-- 查看服务器分配给那个用户 -->
+	 <select id="selectChestUser" parameterType="int" resultType="com.baoidc.idcserver.po.User">
+	 	select id,user_name userName from user where id = #{user_id}
+	 </select>
+	 <!-- 查看机柜所对应的  分配给用户的实例 -->
+	 <select id="selectChestDeviceInstance" resultType="com.baoidc.idcserver.po.DeviceInstance" parameterType="int">
+	 	select start_time startTime,end_time endTime from device_instance where chest_id = #{chest_id}
+	 	<![CDATA[
+	        and status <> 3
+	    ]]> 
+	 </select>
+	 <!-- 查询机柜所对应的ip -->
+	 <select id="selectChestIp" resultType="com.baoidc.idcserver.po.InstanceIp" parameterType="int">
+	 	select ip_id ipId, ip_str ipStr,ip_busi ipBusi,instance_id instanceId,chest_id chestId,ip_status ipStatus
+	 	from instance_ip where chest_id = #{chest_id}
+	 </select>
+	 <!-- 查询机柜下的ip段 -->
+	 <select id="selectChestIpRange" resultType="com.baoidc.idcserver.po.ChestIpRange" parameterType="int">
+	 	select id,start_ip startIp,end_ip endIp,ip_busi ipBusi,chest_id chestId from chest_ip_range where chest_id = #{chest_id}
+	 </select>
+	<!-- 查询机柜的网关 -->
+	 <select id="selectChestGateway" resultType="com.baoidc.idcserver.po.Gateway" parameterType="int">
+	 	select chest_id chestId,gateway_value gatewayValue from t_gateway 
+	 	where chest_id = #{chest_id}
+	 </select>
+	 <!-- 查询机柜下的子网掩码 -->
+	 <select id="selectChestSubnetmask" resultType="com.baoidc.idcserver.po.Subnetmask" parameterType="int">
+	 	select chest_id chestId,subnetmask_value subnetmaskValue from t_subnetmask
+	 	where chest_id = #{chest_id}
+	 </select>
+	 <!-- 根据机柜ID查询机柜-->
+	 <select id="getChestByChestId" resultMap="chestMap" parameterType="int">
+	 	select chest_id, chest_number, chest_type, create_time, host_room, ddos, band_width, power, use_status, user_id 
+	 	from chest 
+	 	where chest_id = #{chest_id}
+	 </select>
+	 <resultMap type="com.baoidc.idcserver.po.DeviceInstance" id="instanceMap">
+       <id column="instance_id" property="instanceId"/>
+       <result column="instance_num" property="instanceNum"/>
+       <result column="service_id" property="serviceId"/>
+       <result column="device_id" property="deviceId"/>
+       <result column="user_id" property="userId"/>
+       <result column="status" property="status"/>
+       <result column="device_name" property="deviceName"/>
+       <result column="instance_type" property="instanceType"/>
+       <result column="start_time" property="startTime"/>
+       <result column="end_time" property="endTime"/>
+       <result column="price" property="price"/>
+       <result column="product_name" property="productName"/>
+       <collection property="instanceParamList" column="instance_id" select="getInstanceParamListByInstanceId" ofType="com.baoidc.idcserver.po.InstanceParam"></collection>
+    </resultMap>
+    <resultMap type="com.baoidc.idcserver.po.InstanceParam" id="instanceParamMap">
+       <id column="id" property="id"/>
+       <result column="instance_id" property="instanceId"/>
+       <result column="param_name" property="paramName"/>
+       <result column="param_value" property="paramValue"/>
+       <result column="tag_value" property="tagValue"/>
+    </resultMap>
+	 
+	 <!-- 服务器的映射 -->
+	 <resultMap type="com.baoidc.idcserver.po.Servers" id="serversMap">
+	 	<id column="server_id" property="serverId"/>
+	 	<result column="server_number"  property="serverNumber"/>
+	 	<result column="server_detail"  property="serverDetail"/>
+	 	<result column="create_time"  property="createTime"/>
+	 	<result column="memory_size"  property="memorySize"/>
+	 	<result column="disk_size"  property="diskSize"/>
+	 	<result column="show_memory"  property="showMemory"/>
+	 	<result column="show_disk"  property="showDisk"/>
+	 	<result column="use_status"  property="useStatus"/>
+	 	<result column="in_host_room"  property="inHostRoom"/>
+	 	<result column="band_width"  property="bandWidth"/>
+	 	<result column="manage_card_ip"  property="manageCardIp"/>
+	 	<result column="manage_card_port"  property="manageCardPort"/>
+	 	<result column="ddos"  property="ddos"/>
+	 	<result column="device_type"  property="deviceType"/>
+	 	<!-- 查看服务器所对应的  分配给用户的实例 -->
+	 	<association property="deviceInstance" column="server_id" select="selectServersDeviceInstance" javaType="com.baoidc.idcserver.po.DeviceInstance" />
+	 	<!-- 查看服务器分配给那个用户 -->
+	 	<association property="user" column="user_id" select="selectServerUser" javaType="com.baoidc.idcserver.po.User" />
+	 	<!-- 查询服务器的拥有者   自己的   还是  用户托管的 -->
+	 	<association property="ownUser" column="own_user_id" select="selectServerOwnUser" javaType="com.baoidc.idcserver.po.User" />
+	 	<!-- 查询服务器所在的机柜 -->
+	 	<association property="chest" column="chest_id" select="selectChestById" javaType="com.baoidc.idcserver.po.Chest" />
+	 	<!-- 查看该服务器是否已经绑定有ip 以及ip对应的营运商 -->
+	 	<collection property="ipList" column="server_id" select="selectServersIp" ofType="com.baoidc.idcserver.po.InstanceIp"  />
+	 	<!-- 查看该服务器上绑定的交换机端口 -->
+	 	<collection property="portList" column="server_id" select="selectServersPort" ofType="com.baoid.idcserver.vo.ServerPort"  />
+	 </resultMap>
+	 <!-- 查询服务器所对应的机柜 -->
+	 <select id="selectChestById" parameterType="int" resultMap="chestMap">
+	 	select chest_id,chest_number from chest where chest_id = #{chest_id}
+	 </select>
+	 <!-- 查询服务器所对应的ip -->
+	 <select id="selectServersIp" resultType="com.baoidc.idcserver.po.InstanceIp" parameterType="int">
+	 	select ip_id ipId, ip_str ipStr,ip_busi ipBusi,instance_id instanceId,chest_id chestId,ip_status ipStatus
+	 	from instance_ip where instance_id = #{server_id}
+	 </select>
+	 <!-- 查询服务器所对应的交换机端口 -->
+	 <select id="selectServersPort" resultType="com.baoid.idcserver.vo.ServerPort" parameterType="int">
+	 	select chest_id chestId,server_id serverId,port_num portNum from server_port where server_id = #{server_id}
+	 </select>
+	 <!-- 查看服务器所对应的  分配给用户的实例 --><!-- 实例共有  0 在用   1待回收  2已回收 -->
+	 <select id="selectServersDeviceInstance" resultMap="instanceMap" parameterType="int">
+	 	select start_time startTime,end_time endTime from device_instance where device_id = #{server_id}
+	 	<![CDATA[
+	        and status <> 3
+	    ]]> 
+	 </select>
+	 	<!-- 查看服务器分配给那个用户 -->
+	 <select id="selectServerUser" parameterType="int" resultType="com.baoidc.idcserver.po.User">
+	 	select id,user_name userName from user where id = #{user_id}
+	 </select>
+	 	<!-- 查看服务器归属人-->
+	 <select id="selectServerOwnUser" parameterType="int" resultType="com.baoidc.idcserver.po.User">
+	 	select id,user_name userName from user where id = #{own_user_id}
+	 </select>
+	 
+	 
+	 <sql id="instanceParam_column_list">
+       id,instance_id,param_name,param_value,tag_value
+    </sql>
+	 <!-- 获取instanceParam by instanceId -->
+    <select id="getInstanceParamListByInstanceId" parameterType="int" resultMap="instanceParamMap">
+    	select 
+    	<include refid="instanceParam_column_list"/>
+    	from instance_param
+    	where instance_id = #{instanceId}
+    </select>
+	 
+	 <!-- 
+	 内存条
+	  -->
+	<!-- 
+	//查询所有类型的内存条
+	public List<MemoryBank> getMemoryBank(String inHostRoom);
+	 -->	 
+	 <select id="getMemoryBank" resultMap="memoryMap" parameterType="string">
+	 	select memory_id,memory_type,memory_usable,in_host_room from memory_bank where in_host_room = #{inHostRoom}
+	 </select>
+	 
+	 <!-- 
+	 	//添加内存条
+	public void addMemory(@Param("memoryType") String memoryType,@Param("num") int num,@Param("inHostRoom")String inHostRoom);
+	  -->
+	  <insert id="addMemory">
+		insert into memory_bank (memory_type,memory_usable,in_host_room) values(#{memoryType},#{num},#{inHostRoom})
+	</insert>	
+	  
+	  <!-- 
+	  //判断某一大小的内存条是否存在
+	public int checkMemoryExist(@Param("memoryType")String memoryType,@Param("inHostRoom")String inHostRoom);
+	   -->
+	<select id="checkMemoryExist" parameterType="string" resultType="int">
+		select count(memory_id) from memory_bank where memory_type = #{memoryType} and in_host_room = #{inHostRoom}
+	</select>
+	<!-- 
+	//修改内存条的可用数
+	public void updateMemoryTypeUsable(@Param("memoryId")int memoryId,@Param("num")int num);
+	 -->
+	 <update id="updateMemoryTypeUsable">
+	 	update memory_bank set  memory_usable = #{num} where memory_id = #{memoryId}
+	 </update>
+	<!-- 
+	//删除某一类型的内存条
+	public void deleteMemoryType(int memoryId);
+	 -->	
+	 <delete id="deleteMemoryType" parameterType="int">
+	 	delete from memory_bank where memory_id = #{memoryId}
+	 </delete>
+	  
+	  
+	<!-- 
+	//硬盘
+	 -->  
+	 <!-- 
+	//查询硬盘库存情况
+	public List<Disk> getDisk(String inHostRoom);
+	  -->
+	  <select id="getDisk" resultMap="diskMap" parameterType="string">
+	  	select disk_id,disk_type,disk_size,disk_usable,in_host_room from disk where in_host_room = #{inHostRoom}
+	  </select>
+	  <!-- 
+	  //修改硬盘可用量
+	public void updateDiskUsable(@Param("diskId")int diskId,@Param("num") int num);
+	   -->
+	   <update id="updateDiskUsable">
+	   	update disk set disk_usable = #{num}
+	   	where disk_id = #{diskId}
+	   </update>
+	 <!-- 
+	//数据库中添加某一大小类型的硬盘
+	public void addDisk(@Param("diskType") String diskType,@Param("diskSize") String diskSize,@Param("num") int num,@Param("inHostRoom")String inHostRoom);
+	  -->
+	  <insert id="addDisk">
+	  	insert into disk (disk_type,disk_size,disk_usable,in_host_room) values (#{diskType},#{diskSize},#{num},#{inHostRoom})
+	  </insert>
+	 <!-- 
+	 //判断某一类型 大小的硬盘是否存在
+	public int checkDiskExist(@Param("diskType") String diskType,@Param("diskSize") String diskSize,@Param("inHostRoom")String inHostRoom);
+	  -->
+	  <select id="checkDiskExist" resultType="int">
+	  	select count(*) from disk where disk_type = #{diskType} and disk_size = #{diskSize} and in_host_room = #{inHostRoom}
+	  </select>
+	<!-- 
+	//删除该类硬盘
+	public void deleteDiskType(int diskId);
+	 -->
+	 <delete id="deleteDiskType" parameterType="int">
+	 	delete from disk where disk_id = #{diskId}
+	 </delete>
+	
+	<!-- 
+	  //机柜
+	 -->  
+	 <!-- 
+	//查询所有机柜以及机柜状态
+	public List<Chest> getChest(Chest chest);
+	  -->
+	  
+	 <select id="getChest" parameterType="com.baoidc.idcserver.po.Chest" resultMap="chestMap">
+	 	select chest_id,chest_number,chest_type,create_time,host_room,host_room_id,ddos,band_width,power,use_status,user_id,
+	 			interchanger,manage_ip,up_port,remark
+	 	from chest
+	 	where 1=1
+	 	<if test="hostRoom!=null and hostRoom !=''">
+	 		and host_room = #{hostRoom}
+	 	</if>
+	 	<if test="chestNumber!=null and chestNumber !=''">
+	 		and chest_number = #{chestNumber}
+	 	</if>
+	 	<if test="useStatus!=-1">
+	 		and use_status = #{useStatus}
+	 	</if>
+	 	<if test="chestId!=0">
+	 		and chest_id = #{chestId}
+	 	</if>
+	 </select> 
+	  <!-- 
+	//添加机柜
+	public void addChest(Chest chest);
+	   -->
+	<insert id="addChest" parameterType="com.baoidc.idcserver.po.Chest">
+		<selectKey keyProperty="chestId" order="AFTER" resultType="int">
+			select last_insert_id()
+		</selectKey>
+		insert into chest(chest_id,chest_number,chest_type,create_time,host_room,host_room_id,ddos,band_width,power,use_status,interchanger,manage_ip,up_port,remark)
+		values(#{chestId},#{chestNumber},#{chestType},#{createTime},#{hostRoom},#{hostRoomId},#{ddos},#{bandWidth},#{power},0,#{interchanger},#{manageIp},#{upPort},#{remark})
+	</insert>
+	   
+	   <!-- 
+	//删除机柜
+	public void deleteChest(int id);
+	    -->
+	<delete id="deleteChest" parameterType="int">
+		delete from chest where chest_id = #{id}
+	</delete>    
+	    <!-- 
+	//修改机柜
+	public void updateChest(Chest chest);
+	     -->
+	 <update id="updateChest" parameterType="com.baoidc.idcserver.po.Chest">
+	 	update chest
+	 	 <set>
+		 	 <if test="chestNumber != '' and chestNumber != null">
+				chest_number = #{chestNumber},
+			</if>
+			<if test="chestType != '' and chestType != null">
+				chest_type = #{chestType},
+			</if>
+			<if test="hostRoom != '' and hostRoom != null">
+				host_room = #{hostRoom},
+			</if>
+			<if test="ddos != '' and ddos != null">
+				ddos = #{ddos},
+			</if>
+			<if test="bandWidth != '' and bandWidth != null">
+				band_width = #{bandWidth},
+			</if>
+			<if test="power != '' and power != null">
+				power = #{power},
+			</if>
+			<if test="interchanger != '' and interchanger != null">
+				interchanger = #{interchanger},
+			</if>
+			<if test="manageIp != '' and manageIp != null">
+				manage_ip = #{manageIp},
+			</if>
+			<if test="upPort != '' and upPort != null">
+				up_port = #{upPort},
+			</if>
+			<if test="remark != null">
+				remark = #{remark},
+			</if>
+			<if test="useStatus != -1">
+				use_status = #{useStatus},
+			</if>
+			<if test="user != null">
+				user_id = #{user.id}
+			</if>
+		</set> 
+	 	 where chest_id = #{chestId}
+	 </update>
+	 <!-- 
+	 //判断机柜的IP段是否可以修改
+	public List<IpRangeUseVO>  checkIpRangeUse(int chestId);
+	  -->
+	 <select id="checkIpRangeUse" parameterType="int" resultType="com.baoid.idcserver.vo.IpRangeUseVO">
+	 	SELECT ip_busi ipBusi,COUNT(*) countIp FROM instance_ip WHERE chest_id = #{chestId} AND ip_status = 1 GROUP BY ip_busi
+	 </select>
+	 <!-- 
+	 //匹配删除ip段
+	public void deleteChestIpRangeExist(@Param("chestIpRange")ChestIpRange chestIpRange,@Param("chestId")int chestId);
+	
+	delete from chest_ip_range where start_ip = #{chestIpRange.startIp} and end_ip = #{chestIpRange.endIp} and chest_id = #{chestId}
+	  -->
+	  <delete id="deleteChestIpRangeExist">
+	  	delete from chest_ip_range where ip_busi = #{chestIpRange.ipBusi} and chest_id = #{chestId}
+	  </delete>
+	 <!-- 
+	 //匹配删除机柜上的ip
+	public void deleteChestIpListExist(InstanceIp instanceIp, int chestId);
+	  -->
+	  <delete id="deleteChestIpListExist">
+	  	delete from instance_ip where ip_busi = #{instanceIp.ipBusi} and chest_id = #{chestId}
+	  </delete>
+	 <!-- 
+	 //判断机柜是否可以删除
+	public int checkChestCanDelete(int chestId);
+	  -->
+	  <select id="checkChestCanDelete" parameterType="int" resultType="int">
+	  	select use_status from chest where chest_id = #{chestId}
+	  </select>
+	  <!-- 
+	  //删除ip库中机柜的IP
+	public void deleteChestIp(int chestId);
+	   -->
+	<delete id="deleteChestIp" parameterType="int">
+		delete from instance_ip where chest_id = #{chestId}
+	</delete>
+	<!-- 
+	//给机柜添加IP
+	public void addIpToChest(@Param("ipList")List<InstanceIp> ipList,@param("chestId")int chestId);
+	 -->     
+   <insert id="addIpToChest" parameterType="java.util.List">
+	  insert into instance_ip(ip_str,ip_busi,chest_id,ip_status) values
+  	<foreach collection="ipList" item="ip" separator=",">
+  		(#{ip.ipStr},#{ip.ipBusi},#{chestId},0)
+  	</foreach>
+	  </insert>
+	<!-- 
+	//给机柜绑定开始   结束  ip段
+		public void addRangeIpToChest(@Param("chestIpRangeList")List<ChestIpRange> chestIpRangeList,
+				@Param("chestId")int chestId);
+	 -->
+	<insert id="addRangeIpToChest" parameterType="java.util.List">
+		insert into chest_ip_range(start_ip,end_ip,ip_busi,chest_id) values
+  	<foreach collection="chestIpRangeList" item="chestIpRange" separator=",">
+  		(#{chestIpRange.startIp},#{chestIpRange.endIp},#{chestIpRange.ipBusi},#{chestId})
+  	</foreach>
+	</insert> 
+	<!-- 
+	//删除机柜关联的范围IP
+	public void deleteChestIpRange(int chestId);
+	 -->    
+	 <delete id="deleteChestIpRange" parameterType="int">
+	 	delete from chest_ip_range where chest_id = #{chestId}
+	 </delete>
+	<!-- 
+	//机柜添加网关
+	public void addGatewayToChest(@Param("gatewayList")List<Gateway> gatewayList,@Param("chestId") int chestId);
+	 -->
+	<insert id="addGatewayToChest">
+		insert into t_gateway(chest_id,gateway_value) values
+		<foreach collection="gatewayList" item="gateway" separator=",">
+			(#{chestId},#{gateway.gatewayValue})
+		</foreach>
+	</insert>
+	<!-- 
+	//机柜添加子网掩码
+	public void addSubnetmaskToChest(@Param("subnetmaskList")List<Subnetmask> subnetmaskList,
+			@Param("chestId")int chestId);
+	 -->
+	<insert id="addSubnetmaskToChest">
+		insert into t_subnetmask(chest_id,subnetmask_value) values
+		<foreach collection="subnetmaskList" item="subnetmask" separator=",">
+			(#{chestId},#{subnetmask.subnetmaskValue})
+		</foreach>
+	</insert>
+	<!-- 
+	//删除机柜网关
+	public void deleteGatewayByChestId(int chestId);
+	 -->
+	<delete id="deleteGatewayByChestId" parameterType="int">
+		delete from t_gateway where chest_id = #{chestId}
+	</delete>
+	<!-- 
+	//删除机柜子网掩码
+	public void deleteSubnetmaskByChestId(int chestId);
+	 -->
+	 <delete id="deleteSubnetmaskByChestId" parameterType="int">
+	 	delete from t_subnetmask where chest_id = #{chestId}
+	 </delete>
+	 <!-- 
+	 //判断机柜编号是否存在
+	public int checkChestNumberExist(String chestNumber);
+	  -->
+	  <select id="checkChestNumberExist" parameterType="string" resultType="int">
+	  	select count(chest_number) from chest where chest_number = #{chestNumber}
+	  </select>
+	 
+	
+	<!-- 
+	//服务器
+	 -->
+	  <sql id="device_column">
+	 	server_id,server_number,server_detail,create_time,memory_size,disk_size,use_status,in_host_room,show_memory,show_disk,chest_id,
+				band_width,ddos,user_id,device_type,own_user_id,manage_card_ip,manage_card_port,remark
+	 </sql>
+	 <!-- 
+	//查询所有服务器以及服务器的状态
+	public List<Servers> getServers(Servers servers);
+	  -->
+	<select id="getServers" resultMap="serversMap">
+		select 	 <include refid="device_column" />
+				from servers
+		where 1=1 
+		<if test="inHostRoom != '' and inHostRoom != null">
+			and in_host_room = #{inHostRoom}
+		</if>
+		<if test="serverNumber != '' and serverNumber != null">
+			and server_number like concat('%',#{serverNumber},'%')
+		</if>
+		<if test="serverDetail != '' and serverDetail != null">
+			and server_detail like concat('%',#{serverDetail},'%')
+		</if>
+		<if test="manageCardIp!='' and manageCardIp!=null">
+			and manage_card_ip like concat('%',#{manageCardIp},'%')
+		</if>
+		<!-- 如果=于-1则查询所有 -->
+		<if test="useStatus != -1">
+			and use_status = #{useStatus}
+		</if>
+		<!-- 如果=于-1则查询所有 -->
+		<if test="chest.chestId != -1" >
+			and chest_id = #{chest.chestId}
+		</if>
+		<!-- 如果是-1  查询所有用户 -->
+		<if test="user!=null and user.id != -1">
+			and user_id = #{user.id}
+		</if>
+		<!-- <if test="memorySize != '' and memorySize != null">
+			and memory_size like concat('%',#{memorySize},'%')
+		</if>
+		<if test="diskSize != '' and diskSize != null">
+			and disk_size like concat('%',#{diskSize},'%')
+		</if> -->
+	</select>
+	<select id="getMatchServers" resultMap="serversMap">
+		select 	 <include refid="device_column" />
+				from servers
+		where 1=1
+		<if test="inHostRoom != '' and inHostRoom != null">
+			and in_host_room = #{inHostRoom}
+		</if>
+		<if test="serverNumber != '' and serverNumber != null">
+			and server_number = #{serverNumber}
+		</if>
+		<if test="serverDetail != '' and serverDetail != null">
+			and server_detail = #{serverDetail}
+		</if>
+		<if test="memorySize != '' and memorySize != null">
+			and memory_size = #{memorySize}
+		</if>
+		<if test="diskSize != '' and diskSize != null">
+			and disk_size = #{diskSize}
+		</if>
+		<if test="bandWidth != '' and bandWidth != null">
+			and band_width = #{bandWidth}
+		</if>
+		<if test="useStatus != 2 and useStatus != null">
+			and use_status = #{useStatus}
+		</if>
+		<if test="ownUserId != null">
+			and own_user_id = #{ownUserId}
+		</if>
+	</select>  
+	
+	<!-- 根据订单参数，查询匹配出机柜 -->
+	<select id="getMatchChests" resultMap="chestMap">
+		select chest_id,chest_number,chest_type,create_time,host_room,ddos,band_width,power,use_status,user_id
+			from chest
+		where 1=1
+		<if test="hostRoom != '' and hostRoom != null">
+			and host_room = #{hostRoom}
+		</if>
+		<if test="chestType != '' and chestType != null">
+			and chest_type = #{chestType}
+		</if>
+		<if test="useStatus != 2 and useStatus != null">
+			and use_status = #{useStatus}
+		</if>
+	</select>
+	<!-- 
+	//根据服务器编号 查询服务器
+	public Servers getServersByServerNumber(String serverNumber);
+	 -->
+	 <select id="getServersByServerNumber" resultMap="serversMap">
+	 	select 	 <include refid="device_column" />
+				from servers where server_number = #{serverNumber}
+	 </select>
+	 <!-- 
+	//根据服务器ID 查询服务器
+	public Servers getServersByServerNumber(String serverNumber);
+	 -->
+	 <select id="getServerByServerId" resultMap="serversMap">
+	 	select 	 <include refid="device_column" />
+				from servers where server_id = #{serverId}
+	 </select>
+	  <!-- 
+	//添加服务器
+	public void addServers(Servers servers);
+	   -->
+	<insert id="addServers" parameterType="com.baoidc.idcserver.po.Servers">
+		<selectKey keyProperty="serverId" order="AFTER" resultType="int">
+			select last_insert_id()
+		</selectKey>
+		insert into servers(server_id,server_number,server_detail,create_time,memory_size,disk_size,use_status,in_host_room,host_room_id,
+					chest_id,own_user_id,device_type,show_memory,show_disk,ddos,band_width,manage_card_ip,manage_card_port,remark)
+		 values(#{serverId},#{serverNumber},#{serverDetail},#{createTime},#{memorySize},#{diskSize},#{useStatus},#{inHostRoom},#{hostRoomId},#{chest.chestId},
+		 #{ownUser.id},#{deviceType},#{showMemory},#{showDisk},#{ddos},#{bandWidth},#{manageCardIp},#{manageCardPort},#{remark})
+	</insert>
+	
+	<!-- 
+	//给服务器绑定ip
+	public void addIpToServers(@Param("ipId")int ipId,@Param("serverId")int serverId,@Param("ipStatus")int ipStatus);
+	 -->
+	 <update id="addIpToServers">
+	 	update instance_ip set instance_id = #{serverId},ip_status = #{ipStatus} where ip_id = #{ipId}
+	 </update>
+	
+	   <!-- 
+	//删除服务器
+	public void deleteServers(int id);
+	    -->
+	<delete id="deleteServers" parameterType="int">
+		delete from servers where server_id = #{id}
+	</delete>
+	    <!-- 
+	//修改服务器
+	public void updateServers(Servers servers);
+	     -->
+	<update id="updateServers" parameterType="com.baoidc.idcserver.po.Servers">
+		update servers
+		<set>
+			memory_size = #{memorySize},
+			show_memory = #{showMemory},
+			 disk_size = #{diskSize},
+			 show_disk = #{showDisk},
+			 
+			 <if test="useStatus != -1">
+			 	use_status = #{useStatus},
+			 </if>
+			 
+			<if test="bandWidth != null">
+				band_width = #{bandWidth},			
+			</if>
+			<if test="serverNumber != null">
+				server_number = #{serverNumber},
+			</if>
+			<if test="ddos != null">
+				ddos = #{ddos},
+			</if>
+			 <if test="user.id != 0">
+			   user_id = #{user.id},
+			 </if>
+			 <if test="manageCardIp != null">
+				manage_card_ip = #{manageCardIp},	 
+			 </if>
+			 <if test="manageCardPort != null">
+				manage_card_port = #{manageCardPort},	 
+			 </if>
+			 <if test="remark != null">
+			 	remark = #{remark}
+			 </if>
+		</set>
+		 where server_id = #{serverId}
+	</update>
+
+	<!-- 
+	//删除服务器
+	public void deleteServer(int serverId);
+	-->
+	<delete id="deleteServer" parameterType="int">
+		delete from servers where server_id = #{serverId}
+	</delete>
+	<!--
+	//更新和服务器关联的ip
+	public void deleteServerIp(int serverId);
+	 -->
+	 <update id="deleteServerIp" parameterType="int">
+	 	update instance_ip set instance_id = 0 ,ip_status = 0 where instance_id = #{serverId}
+	 </update>
+	
+	<!-- 
+	//移除服务器上的IP
+	public void removeServerIp(int ipId);
+	 -->
+	 <update id="removeServerIp" parameterType="int">
+	 	update instance_ip set instance_id=0,ip_status=0 where ip_id = #{ipId}
+	 </update>
+	
+	<!-- 服务器回收 -->
+	<update id="recycleServer" parameterType="com.baoidc.idcserver.po.Servers">
+		update servers
+		 <set>
+		   use_status = #{useStatus},user_id = #{user.id}
+		 </set>
+		 where server_id = #{serverId}
+	</update>
+	
+	<!-- 
+	//查询机柜下未使用的ip
+	public List<InstanceIp> getAllNoUseIp(int chestId);
+	 -->
+	<select id="getAllNoUseIp" resultType="com.baoidc.idcserver.po.InstanceIp" parameterType="int">
+	 	select ip_id ipId, ip_str ipStr,ip_busi ipBusi,instance_id instanceId,chest_id chestId,ip_status ipStatus
+	 	from instance_ip where chest_id = #{chestId} and ip_status = 0
+	 </select>
+	 
+	 <!-- 
+	 //判断IP是否被使用
+	public int checkIpUse(int instanceId);
+	  -->
+	  <select id="checkIpUse" parameterType="int" resultType="int">
+	  	select ip_status from instance_ip where ip_id = #{instanceId}
+	  </select>
+	 
+	 <!-- 查询用户下的所有设备,并包含查询了ip -->
+	 <select id="getServersByuserId" resultMap="serversMap" parameterType="int">
+	 	select 
+	 	<include refid="device_column" />
+		from servers
+		where user_id = #{userId} and use_status = 1
+	 </select>
+	 
+	 <!-- 
+	 //服务器添加交换机端口号
+	public void addServerPort(List<ServerPort> portList,int serverId);
+	  -->
+	<insert id="addServerPort">
+		insert into server_port (chest_id,port_num,server_id) values
+		<foreach collection="portList" item="obj" separator=",">
+			(#{obj.chestId},#{obj.portNum},#{serverId})
+		</foreach>
+	</insert>
+	  <!-- 
+	//判断交换机端口号是否被占用
+	public int checkPortUsed(@Param("chestId")int chestId,@Param("portNum")String portNum);
+	   -->
+	   <select id="checkPortUsed" resultType="int">
+	   	select count(*) from server_port where chest_id = #{chestId} and port_num = #{portNum}
+	   </select>
+	 <!-- 
+	//删除服务器绑定的交换机端口
+	public void deleteServerPort(int serverId);
+	  -->
+	<delete id="deleteServerPort" parameterType="int">
+		delete from server_port where server_id = #{serverId}
+	</delete> 
+
+	<!-- 
+	//根据机柜ID更新机柜上的IP为闲置状态
+	public void updateIpUnUsedByChestId(int chestId);	
+	 -->
+	 <update id="updateIpUnUsedByChestId" parameterType="int">
+	 	update instance_ip set instance_id = 0 ,ip_status = 0 where chest_id = #{chestId}
+	 </update>
+	<!-- 
+	//根据机柜ID删除服务器上的交换机端口
+	public void delPortByChestId(int chestId);
+	 -->
+	 <delete id="delPortByChestId" parameterType="int">
+	 	delete from server_port where chest_id = #{chestId}
+	 </delete>
+	<!-- 
+	//根据机柜ID删除服务器
+	public void delServerByChestId(int chestId);
+	 -->
+	 <delete id="delServerByChestId" parameterType="int">
+	 	delete from servers where chest_id = #{chestId}
+	 </delete>
+</mapper>

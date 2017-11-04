@@ -1,0 +1,49 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baoidc.idcserver.dao.ITokenDAO">
+
+   <!-- 用户 -->
+   <resultMap type="com.baoidc.idcserver.po.Token" id="TokenMap">
+       <id column="id" property="tokenId"/>
+       <result column="token_code" property="tokenCode"/>
+       <result column="user_name" property="userName"/>
+       <result column="create_time" property="createTime"/>
+   </resultMap>
+   
+   <sql id="Token_Column_List">
+      id,token_code,user_name,create_time
+   </sql>
+   
+   <!-- 新增用户 -->
+   <insert id="addNewToken" parameterType="com.baoidc.idcserver.po.Token" flushCache="true">
+      insert into auth_token(token_code,user_name,create_time) 
+      values(#{tokenCode},#{userName},#{createTime})
+   </insert>
+   
+   <!-- 根据ID获取用户信息 -->
+   <select id="getTokenByUserName" resultMap="TokenMap" parameterType="string">
+      select 
+      <include refid="Token_Column_List"/>
+      from auth_token where user_name = #{userName}
+   </select>
+   
+   <!-- 修改用户信息 -->
+   <update id="refreshToken" parameterType="com.baoidc.idcserver.po.Token" flushCache="true">
+       update auth_token
+       <set>
+          <if test="tokenCode != null">
+             token_code = #{tokenCode},
+          </if>
+          <if test="createTime != null">
+             create_time = #{createTime}
+          </if>
+       </set>
+       where user_name = #{userName}
+   </update>
+   
+   <delete id="deleteToken" parameterType="string">
+      delete from auth_token where user_name = #{userName}
+   </delete>
+
+</mapper>

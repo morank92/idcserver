@@ -1,0 +1,150 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baoidc.idcserver.dao.FinanceManageDAO">
+		
+	<resultMap type="com.baoid.idcserver.vo.ConsumeAnalyze" id="consumeMap">
+		<id column="record_id" property="recordId"/>
+		<result column="consume_no" property="consumeNo"/>
+		<result column="order_no" property="orderNo"/>
+		<result column="consume_amt" property="consumeAmt"/>
+		<result column="consume_time" property="consumeTime"/>
+		<result column="product_name" property="productName"/>
+		<association column="user_id" select="selectUserById" property="user" javaType="com.baoidc.idcserver.po.User" />
+	</resultMap>	
+	<select id="selectUserById" parameterType="int" resultType="com.baoidc.idcserver.po.User">
+	 	select id,user_name userName from user where id = #{user_id}
+	 </select>
+		
+	<resultMap type="com.baoidc.idcserver.po.EncashmentRecord" id="encashmentRecordMap">
+		<id column="id" property="id"/>
+		<result column="user_id" property="userId"/>
+		<result column="encashment_no" property="encashmentNo"/>
+		<result column="encashment_create_time" property="encashmentCreateTime"/>
+		<result column="encashment_amt" property="encashmentAmt"/>
+		<result column="encashment_account" property="encashmentAccount"/>
+		<result column="encashment_status" property="encashmentStatus"/>
+		<result column="encashment_finish_time" property="encashmentFinishTime"/>
+		<!-- 查询用户 -->
+		<association property="user" select="queryUserByUserId" column="user_id" javaType="com.baoidc.idcserver.po.User" />
+	</resultMap>
+	
+	<!-- 根据用户id查询用户 -->
+	<select id="queryUserByUserId" parameterType="int" resultType="com.baoidc.idcserver.po.User">
+		select id,user_name userName,phone_num phoneNum from user where id = #{user_id}
+	</select>
+	
+	<!-- //提现管理 -->
+	<!-- 
+	//查询所有的提现记录
+	public  List<EncashmentRecord> getEncashmentRecord(@Param("userId")int userId, @Param("startTime")String startTime,@Param("endTime") String endTime);
+	 -->
+	 <select id="getEncashmentRecord" resultMap="encashmentRecordMap">
+	 	select id,user_id,encashment_no,encashment_create_time,encashment_amt,encashment_account,encashment_status,encashment_finish_time
+	 	from encashment_record
+	 	where 1=1
+	 	<if test="userId != -1">
+	 		and user_id = #{userId}
+	 	</if>
+	 	<if test="startTime != null and startTime !='' ">
+	 		<![CDATA[
+	 			and encashment_create_time > #{startTime}
+	 		]]>
+	 	</if>
+	 	<if test="endTime != null and endTime !='' ">
+	 		<![CDATA[
+	 			and encashment_create_time < #{endTime}
+	 		]]>
+	 	</if>
+	 </select>
+	<!-- 
+	//处理提现  修改提现状态
+	public void updateEncashmentRecordStatus(@Param("id")int id,@Param("finashTime")String finashTime);
+	 -->
+	 <update id="updateEncashmentRecordStatus" parameterType="int">
+	 	update encashment_record set encashment_status = "已处理", encashment_finish_time = #{finashTime} where id = #{id} 
+	 </update>
+	<!-- 
+	//删除提现记录
+	public void deleteEncashmentRecord(int id);
+	 -->
+	 <delete id="deleteEncashmentRecord" parameterType="int">
+	 	delete from encashment_record where id = #{id}
+	 </delete>
+	 
+	 
+	 <!-- //财务分析  之   充值    提现 -->
+	<!-- 
+	//分月查询充值记录
+	public List<FinanceAnalyze> getRechargeByMounth(String timeStr);
+	 -->
+	 <select id="getRechargeByMounth" parameterType="string" resultType="com.baoid.idcserver.vo.FinanceAnalyze">
+	 	select DATE_FORMAT(charge_finish_time,'%Y-%m') months, sum(charge_amt) chargeAmt
+	 	from charge_record where charge_status=1
+	 	<if test="timeStr != '' and timeStr != null ">
+	 		<![CDATA[
+	 			and charge_finish_time > ${timeStr}
+	 		]]>
+	 	</if>
+	 	  group by months
+	 </select>
+	 <!-- 
+	//分月查询提现记录
+	public List<FinanceAnalyze> getEncashmentByMouth(String timeStr);
+	  -->
+	<select id="getEncashmentByMouth" parameterType="string" resultType="com.baoid.idcserver.vo.FinanceAnalyze">
+		select DATE_FORMAT(encashment_finish_time,'%Y-%m') months, sum(encashment_amt) encashmentAmt
+	 	from encashment_record where encashment_status='已处理'
+	 	<if test="timeStr != '' and timeStr != null ">
+	 		<![CDATA[
+	 			and encashment_finish_time > ${timeStr}
+	 		]]>
+	 	</if>
+	 	  group by months
+	</select> 
+	
+	
+	<!-- 
+	消费记录分析
+	 -->
+	 <!-- 
+	 //查询所有的消费记录
+	public List<ConsumeAnalyze> getAllConsumeRecord(@Param("startTime")String startTime, @Param("endTime")String endTime,@Param("userId")int userId);
+	  -->
+	<select id="getAllConsumeRecord" resultMap="consumeMap">
+		select record_id,user_id,account_id,consume_no,order_no,order_type,consume_amt,consume_time,product_name
+		from consume_record
+		where 1=1
+		<if test="userId!=-1">
+			and user_id = #{userId}
+		</if>
+		<if test="startTime!=null and startTime !='' ">
+			<![CDATA[
+				and consume_time > #{startTime}
+			]]>
+		</if>
+		<if test="endTime!=null and endTime !='' ">
+			<![CDATA[
+				and consume_time < #{endTime}
+			]]>
+		</if>
+		 order by consume_time desc
+	</select>
+	<!-- 
+	//分类查询近半年的消费记录
+	public List<ConsumeTypeAnalyze> getConsumeByTypeMonth(@Param("timeStr")String timeStr,@Param("userId")int userId);
+	 -->
+	 <select id="getConsumeByTypeMonth" parameterType="string" resultType="com.baoid.idcserver.vo.ConsumeTypeAnalyze">
+	 	SELECT DATE_FORMAT(consume_time,'%Y-%m') months,SUM(consume_amt) consumeTotal,instance_type instanceType FROM consume_record
+	 	where consume_time>#{timeStr} 
+	 		<if test="userId!=0">
+	 			and user_id = #{userId}
+	 		</if>
+	 	  GROUP BY months,instance_type
+	 </select>
+	 
+	 <select id="getEncashmentById"  parameterType="int" resultMap="encashmentRecordMap">
+	    select id,user_id,encashment_no,encashment_create_time,encashment_amt,encashment_account,encashment_status,encashment_finish_time
+	 	from encashment_record where id = #{id}
+	 </select>
+</mapper>

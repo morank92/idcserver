@@ -1,0 +1,161 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baoidc.idcserver.dao.IWorkOrderDAO">
+
+   <!-- 用户工单 -->
+   <resultMap type="com.baoidc.idcserver.po.UserWorkOrder" id="WorkOrderMap">
+       <id column="id" property="workOrderId"/>
+       <result column="user_id" property="userId"/>
+       <result column="order_no" property="orderNo"/>
+       <result column="order_title" property="orderTitle"/>
+       <result column="device_type" property="deviceType"/>
+       <result column="device_id" property="deviceId"/>
+       <result column="device_ip" property="deviceIp"/>
+       <result column="order_type" property="orderType"/>
+       <result column="data_center" property="dataCenter"/>
+       <result column="create_time" property="createTime"/>
+       <result column="order_status" property="orderStatus"/>
+       <result column="contact_name" property="contactName"/>
+       <result column="contact_phone" property="contactPhone"/>
+       <result column="contact_email" property="contactEmail"/>
+       <result column="update_time" property="updateTime"/>
+       <association property="user" column="user_id" select="getUserByUserId" javaType="com.baoidc.idcserver.po.User" />
+       <collection property="questionList" column="id" select="getWorkorderQuestion" ofType="com.baoidc.idcserver.po.WorkorderQuestion" />
+   </resultMap>
+   
+   <select id="getUserByUserId" parameterType="int" resultType="com.baoidc.idcserver.po.User">
+   	select id,user_name userName from user where id = #{user_id}
+   </select>
+   
+   <resultMap type="com.baoidc.idcserver.po.WorkorderQuestion" id="questionMap">
+   		<id column="question_id" property="questionId"/>
+   		<result column="workorder_id"  property="workorderId"/>
+   		<result column="question_create_time"  property="questionCreateTime"/>
+   		<result column="question_content"  property="questionContent"/>
+   		<collection property="replyList" column="question_id" select="getQuestionReply" ofType="com.baoidc.idcserver.po.WorkOrderReply" />
+   </resultMap>
+   <select id="getWorkorderQuestion" parameterType="int" resultMap="questionMap">
+   		select question_id,workorder_id,question_create_time,question_content from workorder_question where workorder_id = #{id}
+   </select>
+   
+   <!-- 工单回复 -->
+   <resultMap type="com.baoidc.idcserver.po.WorkOrderReply" id="WorkOrderReplyMap">
+      <id column="id" property="id"/>
+      <result column="question_id" property="questionId"/>
+      <result column="workorder_id" property="workorderId"/>
+      <result column="reply_time" property="replyTime"/>
+      <result column="reply_content" property="replyContent"/>
+      <association property="user" column="reply_user_id" select="getManageUserById" javaType="com.baoidc.idcserver.po.SysManageUser"></association>
+   </resultMap>
+   <select id="getQuestionReply" parameterType="int" resultMap="WorkOrderReplyMap">
+   	select id,workorder_id,question_id,reply_time,reply_content,reply_user_id from workorder_reply where question_id = #{question_id}
+   </select>
+   
+   <!-- 获取回复工单的用户 -->
+   <select id="getManageUserById" parameterType="int" resultType="com.baoidc.idcserver.po.SysManageUser">
+   	select id,user_name userName from sys_user where id = #{reply_user_id}
+   </select>
+   
+   <!-- 工单表字段 -->
+   <sql id="WorkOrder_Column_List">
+      id,user_id,order_no,order_title,device_type,device_id,device_ip,order_type,
+      data_center,create_time,order_status,contact_name,contact_phone,contact_email,update_time
+   </sql>
+   
+   <!-- 获取用户工单列表 -->
+   <select id="getUserWorkOrderList" resultMap="WorkOrderMap">
+      select
+      <include refid="WorkOrder_Column_List"/>
+      from user_workorder where user_id = #{userId}
+      <if test="status != -1">
+       and order_status = #{status}
+      </if>
+   </select>
+   
+   <!-- 获取所有工单列表 -->
+   <select id="getWorkOrderList" resultMap="WorkOrderMap">
+      select
+      <include refid="WorkOrder_Column_List"/>
+      from user_workorder order by create_time desc
+   </select>
+   
+   <!-- 获取所有工单列表 -->
+   <select id="getWorkOrderListByStatus" resultMap="WorkOrderMap">
+      select
+      <include refid="WorkOrder_Column_List"/>
+      from user_workorder where order_status !=2 order by create_time desc
+   </select>
+   
+   
+   <!-- 生成工单 -->
+   <insert id="createWorkOrder" parameterType="com.baoidc.idcserver.po.UserWorkOrder" flushCache="true" useGeneratedKeys="true" keyProperty="id" >
+   		<selectKey keyProperty="workOrderId" order="AFTER" resultType="int">
+   			select last_insert_id()
+   		</selectKey>
+      insert into user_workorder(id,user_id,order_no,order_title,device_type,device_id,device_ip,order_type,
+     							 data_center,create_time,order_status,contact_name,contact_phone,
+     							 contact_email,update_time)
+      values(#{workOrderId},#{userId},#{orderNo},#{orderTitle},#{deviceType},#{deviceId},#{deviceIp},#{orderType},#{dataCenter},
+             #{createTime},#{orderStatus},#{contactName},#{contactPhone},#{contactEmail},#{updateTime})
+   </insert>
+   
+   <!-- 
+	//创建工单的问题
+	public void createWorkOrderQuestion(WorkorderQuestion question);
+	 -->
+	<insert id="createWorkOrderQuestion" parameterType="com.baoidc.idcserver.po.WorkorderQuestion">
+		insert into workorder_question(workorder_id,question_create_time,question_content)
+		values(#{workorderId},#{questionCreateTime},#{questionContent})
+	</insert>
+	
+	<!-- 
+	//管理员对工单问题的回复
+	public void createQuestionReply(WorkOrderReply reply);
+	 -->
+	 <insert id="createQuestionReply" parameterType="com.baoidc.idcserver.po.WorkOrderReply">
+	 	insert into workorder_reply(workorder_id,question_id,reply_time,reply_content,reply_user_id)
+	 	values(#{workorderId},#{questionId},#{replyTime},#{replyContent},#{userId})
+	 </insert>
+   
+   <!-- 修改工单描述、工单状态、工单更新时间 -->
+   <update id="updateWorkOrder" parameterType="com.baoidc.idcserver.po.UserWorkOrder" flushCache="true">
+       update user_workorder
+       <set>
+            order_status = #{orderStatus},
+          <if test="updateTime != null || updateTime!=''">
+            update_time = #{updateTime}
+          </if>
+       </set>
+       where id = #{workOrderId}
+   </update>
+   
+   <!-- 删除工单 -->
+   <delete id="deleteWorkOrder" parameterType="int" flushCache="true">
+      delete from user_workorder where id = #{workOrderId}
+   </delete>
+   
+   <!-- 删除工单回复 -->
+   <delete id="deleteWorkOrderReply" parameterType="int" flushCache="true">
+      delete from workorder_reply where workorder_id = #{workOrderId}
+   </delete>
+   <!-- 
+   //删除工单问题
+	public void deleteWordOrderQuestion(int workOrderId);
+    -->
+    <delete id="deleteWordOrderQuestion" parameterType="int">
+    	delete from workorder_question where workorder_id = #{workOrderId}
+    </delete>
+   
+   <!-- 
+   //	查询待处理工单个数
+	public int getNoDealWorkOrder(int userId);
+    -->
+    <select id="getNoDealWorkOrder" parameterType="int" resultType="int" >
+    	select count(id) from user_workorder where order_status = 0 and user_id = #{userId}
+    </select>
+
+	
+
+
+</mapper>

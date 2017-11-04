@@ -1,0 +1,376 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baoidc.idcserver.dao.DeviceServerDAO">
+	<!-- <cache type="com.baoidc.idcserver.cache.LoggingRedisCache" /> -->
+	<resultMap type="com.baoidc.idcserver.po.ServerRoom" id="roomMap">
+       <id column="id" property="id"/>
+       <result column="name" property="name"/>
+       <collection property="deviceServerList" column="id" select="getDeviceServerByRoomId" ofType="com.baoidc.idcserver.po.DeviceServer"></collection>
+    </resultMap>
+
+    <resultMap type="com.baoidc.idcserver.po.DeviceServer" id="serverMap">
+       <id column="id" property="id"/>
+       <result column="name" property="name"/>
+       <result column="cpu" property="cpu"/>
+       <result column="room_id" property="roomId"/>
+       <result column="price" property="price"/>
+    </resultMap>
+    <resultMap type="com.baoidc.idcserver.po.DeviceSource" id="sourceMap">
+       <id column="id" property="id"/>
+       <result column="source_name" property="sourceName"/>
+       <result column="source_desc" property="sourceDesc"/>
+       <result column="source_type" property="sourceType"/>
+       <result column="status" property="status"/>
+       <result column="create_time" property="createTime"/>
+       <result column="used_time" property="usedTime"/>
+    </resultMap>
+    <resultMap type="com.baoidc.idcserver.po.DeviceSourceParam" id="sourceParamMap">
+       <id column="id" property="id"/>
+       <!-- <result column="source_type" property="sourceType"/> -->
+       <result column="source_param" property="sourceParam"/>
+       <result column="source_param_step" property="sourceParamStep"/>
+       <result column="source_param_min" property="sourceParamMin"/>
+       <result column="source_param_max" property="sourceParamMax"/>
+       <result column="price" property="price"/>
+       <result column="tag_id" property="tagId"/>
+       <result column="tag_name" property="tagName"/>
+       <result column="tag_value" property="tagValue"/>
+    </resultMap>
+    <resultMap type="com.baoidc.idcserver.po.Order" id="orderMap">
+       <id column="id" property="id"/>
+       <result column="order_id" property="orderId"/>
+       <result column="user_id" property="userId"/>
+       <result column="instance_id" property="instanceId"/>
+       <result column="status" property="status"/>
+       <result column="order_type" property="orderType"/>
+       <result column="create_time" property="createTime"/>
+       <result column="pay_time" property="payTime"/>
+       <result column="start_time" property="startTime"/>
+       <result column="end_time" property="endTime"/>
+       <result column="price" property="price"/>
+       <result column="service_id" property="serviceId"/>
+       <result column="product_name" property="productName"/>
+       <result column="user_name" property="userName"/>
+       <result column="customer_manager_id" property="customerManagerId"/>
+       <result column="server_id" property="serverId"/>
+       <result column="remark" property="remark"/>
+       <result column="source_price" property="sourcePrice"/>
+       <collection property="orderParamList" column="order_id" select="getOrderParamListByOrderId" ofType="com.baoidc.idcserver.po.OrderParam"></collection>
+    </resultMap>
+    <resultMap type="com.baoidc.idcserver.po.OrderParam" id="orderParamMap">
+       <id column="id" property="id"/>
+       <result column="order_id" property="orderId"/>
+       <result column="param_name" property="paramName"/>
+       <result column="param_value" property="paramValue"/>
+       <result column="tag_value" property="tagValue"/>
+    </resultMap>
+	
+    <sql id="server_column_list">
+       id,name,cpu,room_id,price
+    </sql>
+    <sql id="sourceParam_column_list">
+       id,source_type,source_param,source_param_step,source_param_min,source_param_max,price
+    </sql>
+    <sql id="order_column_list">
+       id,order_id,user_id,instance_id, server_id,status,order_type,create_time,pay_time,start_time,end_time,remark,price,source_price
+    </sql>
+    <sql id="orderParam_column_list">
+       id,order_id,param_name,param_value,tag_value
+    </sql>
+    <select id="getServerRoomList" resultMap="roomMap">
+    	select id, name
+    	from server_room
+    </select>
+    
+    
+    <!-- <select id="getSourceTagById" resultMap="sourceTagMap">
+    	select id, tag_name, tag_value
+    	from source_type_tag
+    	where id = #{id}
+    </select> -->
+    <select id="getDeviceServer" resultMap="serverMap">
+      select 
+      <include refid="server_column_list"/>
+      from device_server
+    </select>
+    <select id="getDeviceServerByRoomId" resultMap="serverMap">
+      select 
+      <include refid="server_column_list"/>
+      from device_server
+      where room_id = #{id}
+    </select>
+    
+    <select id="getDeviceSourceParam" resultMap="sourceParamMap">
+      select
+      <include refid="sourceParam_column_list"/>
+      from device_source_param
+    </select>
+    <!-- 获取创建产品服务的页面信息by productId -->
+    <select id="getServiceProductByProductId" resultMap="sourceParamMap" parameterType="int">
+    	select p.id, p.source_param,p.source_param_step, p.source_param_min, p.source_param_max, p.price,
+    	t.id, t.tag_value, t.tag_name
+		from product_source p1
+		left join device_source_param p
+		on p1.source_id = p.id
+		left join source_type_tag t
+		on p.tag_id = t.id
+		where p1.product_id = #{productId}
+		
+		
+		
+		<!-- left join source_type_value s 
+		on p1.source_id = s.source_id
+		left join device_source_param p 
+		on p.source_type = s.source_type
+		left join source_type_tag s2
+		on s.tag_id = s2.id
+		where p1.product_id = #{productId}; -->
+    </select>
+    
+    <!-- <select id="getDeviceSourceParamBySourceType" parameterType="int" resultMap="sourceParamMap">
+      select
+      <include refid="sourceParam_column_list"/>
+      from device_source_param
+      where source_type = #{sourceType}
+    </select> -->
+    <!-- 新增服务器租用订单 -->
+    <insert id="addServerRentOrder" parameterType="com.baoidc.idcserver.po.ServerRentOrder">
+    	insert into server_rent_order(order_id, user_id, room, ram, disk, ttl, ddos, width, duration, price, create_time)
+    	values(#{orderId},#{userId},#{room},#{ram},#{disk},#{ttl},#{ddos},#{width},#{duration},#{price},#{createTime})
+    </insert>
+    
+    <!-- 新增订单 -->
+    <insert id="addOrder" parameterType="com.baoidc.idcserver.po.Order" flushCache="true" useGeneratedKeys="true" keyProperty="id">
+    	insert into device_order(order_id, user_id, instance_id, server_id, status, order_type, price, create_time, remark, source_price)
+    	values(#{orderId},#{userId},#{instanceId},#{serverId},#{status},#{orderType},#{price},#{createTime},#{remark},#{sourcePrice})
+    </insert>
+    <insert id="addOrderParam" parameterType="com.baoidc.idcserver.po.OrderParam">
+    	insert into order_param(order_id, param_name, param_value, tag_value)
+    	values(#{orderId},#{paramName},#{paramValue},#{tagValue})
+    </insert>
+    <!-- 新增备注 -->
+    <insert id="addRemark" parameterType="com.baoidc.idcserver.po.Remark">
+    	insert into order_remark(order_id, content)
+    	values(#{orderId},#{content})
+    </insert>
+    
+    <!-- 批量添加订单 -->
+    <insert id="addOrderList" parameterType="java.util.List">
+      insert into device_order(order_id, user_id, instance_id, status, order_type, price, create_time) values
+      
+      <foreach collection="orderList" item="order" separator=",">
+      	(#{order.orderId},#{order.userId},#{order.instanceId},#{order.status},#{order.orderType},#{order.price},#{order.createTime})
+      </foreach>
+      </insert>
+      
+     <!-- 批量添加订单 项-->
+    <insert id="addOrderParamList" parameterType="java.util.List">
+      insert into order_param(order_id, param_name, param_value, tag_value) values
+      
+      <foreach collection="paramList" item="param" separator=",">
+      	(#{param.orderId},#{param.paramName},#{param.paramValue},#{param.tagValue})
+      </foreach>
+      </insert>
+    
+    
+    <!-- 获取用户的order by UserId -->
+    <select id="getOrderListByUserId" parameterType="int" resultMap="orderMap">
+    	select 
+    	<include refid="order_column_list"/>
+    	,p.product_name,p.service_id
+    	from device_order
+    	left join product_order p
+    	on order_type = p.product_id
+    	where user_id = #{userId}
+    </select>
+    <!-- 获取用户的orderParam by orderId -->
+    <select id="getOrderParamListByOrderId" resultMap="orderParamMap">
+    	select 
+    	<include refid="orderParam_column_list"/>
+    	from order_param
+    	where order_id = #{orderId}
+    </select>
+    
+    <!-- 获取单个的订单 -->
+    <select id="getSingleOrder" parameterType="com.baoidc.idcserver.po.Order" resultMap="orderMap">
+    	select 
+    	<include refid="order_column_list"/>
+    	,p.product_name,p.service_id
+    	from device_order
+    	left join product_order p
+    	on order_type = p.product_id
+    	where user_id = #{userId} and order_id = #{orderId}
+    </select>
+    
+    <!-- 获取单个的订单byOrderId -->
+    <select id="getSingleOrderByOrderId" resultMap="orderMap">
+    	select 
+    	<include refid="order_column_list"/>
+    	,p.product_name,p.service_id
+    	from device_order
+    	left join product_order p
+    	on order_type = p.product_id
+    	where order_id = #{orderId}
+    </select>
+    <!-- 更新订单状态 -->
+    <update id="updateOrderStatus" parameterType="com.baoidc.idcserver.po.Order">
+    	update device_order
+    	<set>
+    	  <if test="status != 0">
+    	      status = #{status},
+    	  </if>
+    	  <if test="payTime != '' and payTime != null">
+    	      pay_time = #{payTime},
+    	  </if>
+    	  <if test="startTime != '' and startTime != null">
+    	      start_time = #{startTime},
+    	  </if>
+    	  <if test="endTime != '' and endTime != null">
+    	      end_time = #{endTime},
+    	  </if>
+    	  <if test="instanceId != ''">
+    	      instance_id = #{instanceId}
+    	  </if>
+    	</set>
+    	where order_id = #{orderId} and user_id = #{userId}
+    </update>
+    
+    <!-- 批量更新订单状态 -->
+    <update id="updateOrderListStatus" parameterType="java.util.List" flushCache="true">
+      <foreach collection="orderList" item="order" separator=";">
+        update device_order
+        <set>
+           <if test="order.status != 0">
+    	      status = #{order.status},
+    	  </if>
+    	  <if test="order.payTime != '' and order.payTime != null">
+    	      pay_time = #{order.payTime},
+    	  </if>
+    	  <if test="order.startTime != '' and order.startTime != null">
+    	      start_time = #{order.startTime},
+    	  </if>
+    	  <if test="order.endTime != '' and order.endTime != null">
+    	      end_time = #{order.endTime},
+    	  </if>
+    	  <if test="order.instanceId != ''">
+    	      instance_id = #{order.instanceId}
+    	  </if>
+        </set>
+        where order_id = #{order.orderId} and user_id = #{order.userId}
+      </foreach>
+    </update>
+    
+    
+    
+    <!-- 删除订单 -->
+    <delete id="deleteOrder" parameterType="com.baoidc.idcserver.po.Order">
+    	delete from device_order
+    	where order_id = #{orderId} and user_id = #{userId}
+    </delete>
+    
+    <!-- 获取订单列表 -->
+    <select id="getOrders" resultMap="orderMap">
+    	select 
+    	o.id,o.order_id,o.user_id,o.instance_id, o.server_id, o.status,o.order_type,o.create_time,o.pay_time,o.start_time,o.end_time,o.price,o.remark,
+    	p.product_name,p.service_id,
+    	u.user_name
+    	from device_order o,product_order p ,user u 
+    	where order_type = p.product_id and user_id = u.id
+    </select>
+    
+    <!-- 获取订单列表，管理员 -->
+    <select id="getOrdersForManage" parameterType="com.baoidc.idcserver.vo.query.OrderQueryVO" resultMap="orderMap">
+    	select 
+    	o.id,o.order_id,o.user_id,o.instance_id, o.server_id, o.status,o.order_type,o.create_time,o.pay_time,o.start_time,o.end_time,o.remark,
+    	o.price,p.product_name,p.service_id,
+    	u.user_name, u.customer_manager_id
+    	from device_order o,product_order p ,user u 
+    	where order_type = p.product_id and user_id = u.id
+    	<if test="orderType != -1">
+    	 and o.order_type = #{orderType}
+    	</if>
+    	<if test="startTime != ''">
+    	  <![CDATA[
+	        and o.pay_time >= #{startTime}
+	      ]]>
+    	</if>
+    	<if test="endTime != ''">
+    	  <![CDATA[
+	        and o.pay_time <= #{endTime}
+	      ]]>
+    	</if>
+    	<if test="orderStatus != 0">
+    	   and o.status = #{orderStatus}
+    	</if>
+    	<![CDATA[
+	       and status <> 0
+	     ]]>
+    </select>
+    
+    
+    <!-- 获取订单列表，条件查询 -->
+    <select id="getOrderList4Query" parameterType="com.baoidc.idcserver.po.Order" resultMap="orderMap">
+    	select 
+    	<include refid="order_column_list"/>
+    	,p.product_name,p.service_id
+    	from device_order
+    	left join product_order p
+    	on order_type = p.product_id
+    	where user_id = #{userId}
+    	<if test="orderType != null and orderType != '' ">
+    	 and order_type = #{orderType}
+    	</if>
+    	
+    	<if test="createTime != null and createTime != '' ">
+    	  <![CDATA[
+	        and create_time >= #{createTime} 
+	      ]]>
+    	</if>
+    	<if test="queryEndtime != null and queryEndtime != ''">
+    	  <![CDATA[
+	        and create_time <= #{queryEndtime}
+	      ]]>
+    	</if>
+    	
+    	<if test="startTime != null and startTime != ''">
+    	  <![CDATA[
+	        and start_time >= #{startTime}
+	      ]]>
+    	</if>
+    	<if test="endTime != null and endTime != ''">
+    	  <![CDATA[
+	        and end_time <= #{endTime}
+	      ]]>
+    	</if>
+    	<if test="status != -1">
+    	   and status = #{status}
+    	</if>
+    </select>
+    
+    <!-- 根据实例Id和tagValue -->
+    <select id="getOrderParamByInst" parameterType="com.baoidc.idcserver.po.OrderParam" resultMap="orderParamMap">
+       select
+       <include refid="orderParam_column_list"/>
+       from order_param where order_id = #{orderId} and tag_value = #{tagValue}
+    </select>
+    
+    <!-- 
+    //	查询未支付订单个数
+	public int getNoPayOrder(int userId);
+     -->
+     <select id="getNoPayOrder" parameterType="int" resultType="int">
+     	select count(id) from device_order where status=0   and user_id = #{userId}   
+     </select>
+    
+    <!-- 
+    //	查询即将过期的订单个数
+	public int getExpireOrder(int userId);
+     -->
+   <!-- <select id="getExpireOrder" parameterType="int" resultType="int">
+   		select count() from device_instance where instance_type = 1 and user_id = #{userId} and 
+   		  <![CDATA[
+   		  	end_time 
+   		  ]]>
+   </select> -->
+</mapper>

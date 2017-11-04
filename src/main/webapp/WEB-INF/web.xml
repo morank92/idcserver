@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>idcserver</display-name>
+  
+  
+  <listener>
+     <listener-class>
+       org.springframework.web.context.ContextLoaderListener
+     </listener-class>
+  </listener>
+  
+  <context-param>
+		<param-name>contextConfigLocation</param-name>
+		<param-value>classpath:application-context.xml</param-value>
+  </context-param>
+  
+  <filter>
+     <filter-name>corsFilter</filter-name>
+     <filter-class>com.baoidc.idcserver.core.filter.CorsFilter</filter-class>
+     <init-param>  
+        <param-name>allowOrigin</param-name>  
+        <param-value>http://192.168.7.113:8080</param-value>  
+    </init-param>  
+    <init-param>  
+        <param-name>allowMethods</param-name>  
+        <param-value>GET,POST,PUT,DELETE,OPTIONS</param-value>
+    </init-param>  
+    <init-param>  
+        <param-name>allowCredentials</param-name>  
+        <param-value>true</param-value>  
+    </init-param>  
+    <init-param>  
+        <param-name>allowHeaders</param-name>  
+        <param-value>Request-Uri,Login-Name,Content-Type</param-value>  
+    </init-param>  
+  </filter>
+  
+  <filter-mapping>
+     <filter-name>corsFilter</filter-name>
+     <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  
+  <filter>
+     <filter-name>authenticationFilter</filter-name>
+     <filter-class>com.baoidc.idcserver.core.filter.AuthenticationFilter</filter-class>
+     <init-param>  
+        <param-name>tokenTimeLimit</param-name>  
+        <param-value>1800</param-value>  
+    </init-param>
+     <init-param>  
+        <param-name>refresh</param-name>  
+        <param-value>true</param-value>  
+    </init-param>
+  </filter>
+  
+  <filter-mapping>
+     <filter-name>authenticationFilter</filter-name>
+     <url-pattern>/*</url-pattern>
+  </filter-mapping>
+  
+  
+   <!-- <filter>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>springSecurityFilterChain</filter-name>
+        <url-pattern>/*</url-pattern>
+    </filter-mapping> -->
+    
+   <servlet>
+		<servlet-name>autoLoadServlet</servlet-name>
+		<servlet-class>com.baoidc.idcserver.acp.sdk.AutoLoadServlet</servlet-class>
+		<load-on-startup>0</load-on-startup>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>autoLoadServlet</servlet-name>
+		<url-pattern>/autoLoadServlet</url-pattern>
+	</servlet-mapping>  
+  
+  <servlet>
+		<servlet-name>jersey-serlvet</servlet-name>
+		<servlet-class>
+			org.glassfish.jersey.servlet.ServletContainer
+		</servlet-class>
+		<init-param>
+			<param-name>javax.ws.rs.Application</param-name>
+			<param-value>com.baoidc.idcserver.rest.service.IdcServerApplication</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup>
+	</servlet>
+  <servlet>
+    <description>This is the description of my J2EE component</description>
+    <display-name>This is the display name of my J2EE component</display-name>
+    <servlet-name>PayResult</servlet-name>
+    <servlet-class>com.baoidc.idcserver.core.filter.PayResult</servlet-class>
+  </servlet>
+
+	
+	<servlet-mapping>
+		<servlet-name>jersey-serlvet</servlet-name>
+		<url-pattern>/*</url-pattern>
+	</servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>PayResult</servlet-name>
+    <url-pattern>/servlet/PayResult</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  	<servlet-name>AliPayResult</servlet-name>
+  	<servlet-class>com.baoidc.idcserver.core.filter.AliPayResult</servlet-class>
+  </servlet>
+	<servlet-mapping>
+	  	<servlet-name>AliPayResult</servlet-name>
+		<url-pattern>/servlet/aliPayResult</url-pattern>
+	</servlet-mapping>  
+</web-app>

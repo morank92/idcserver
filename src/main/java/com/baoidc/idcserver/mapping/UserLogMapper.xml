@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.baoidc.idcserver.dao.IUserLogDAO">
+   <resultMap type="com.baoidc.idcserver.po.UserLog" id="BaseResultMap">
+       <result column="log_id" property="logId" jdbcType="TINYINT"/>
+       <result column="log_type" property="logType" jdbcType="VARCHAR"/>
+       <result column="method" property="method" jdbcType="VARCHAR"/>
+       <result column="request_ip" property="requestIp" jdbcType="VARCHAR"/>
+       <result column="user_id" property="userId" jdbcType="TINYINT"/>
+       <result column="log_user" property="logUser" jdbcType="VARCHAR"/>
+       <result column="operation" property="operation" jdbcType="VARCHAR"/>
+       <result column="do_time" property="doTime" jdbcType="VARCHAR"/>
+       <association property="user" select="selectUserByUserId" javaType="com.baoidc.idcserver.po.User" column="user_id" />
+       <association property="admin" select="selectUserByAdminId" javaType="com.baoidc.idcserver.po.SysManageUser" column="admin_id" />
+   </resultMap>
+   <select id="selectUserByUserId" parameterType="int" resultMap="com.baoidc.idcserver.dao.IUserDAO.UserMap">
+   	 select id,user_name from user where id = #{user_id}
+   </select>
+   <select id="selectUserByAdminId" parameterType="int" resultMap="com.baoidc.idcserver.dao.ISystemDAO.SysManageUserMap">
+   	  select id,user_name
+      from sys_user where id = #{admin_id}
+   </select>
+   
+   <sql id="Base_column_list">
+      log_id,log_type,method,request_ip,user_id,operation,do_time,log_user,admin_id
+   </sql>
+   
+   <insert id="addUserLog" parameterType="com.baoidc.idcserver.po.UserLog">
+        insert into t_userlog(log_type,method,request_ip,user_id,operation,do_time,log_user,admin_id)
+        values(#{logType},#{method},#{requestIp},#{userId},#{operation},#{doTime},#{logUser},#{adminId})
+    </insert>
+    
+    <!-- 
+    //查询用户操作日志
+	public void queryUserOptLog(@Param("userId")int userId,@Param("adminId")int adminId,@Param("startTime") String startTime,@Param("endTime") String endTime);
+     -->
+     <select id="queryUserOptLog" resultMap="BaseResultMap">
+     	select log_id,log_type,method,request_ip,user_id,operation,do_time,log_user,admin_id from t_userlog
+     	where 1=1
+     	<if test="userId != -1 and userId != null">
+     		and user_id = #{userId}
+     	</if>
+     	<if test="adminId != -1 and adminId != null">
+     		and admin_id = #{adminId}
+     	</if>
+     	<if test="startTime != '' and startTime != null">
+     		<![CDATA[
+     		and do_time >= #{startTime}
+     		]]>
+     	</if>
+     	<if test="endTime != '' and endTime != null">
+     		<![CDATA[
+     		and do_time <= #{endTime}
+     		]]>
+     	</if>
+     	order by log_id desc
+     </select>
+</mapper>

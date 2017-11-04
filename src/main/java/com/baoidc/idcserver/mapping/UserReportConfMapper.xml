@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.baoidc.idcserver.dao.IUserReportConfDAO">
+   <resultMap type="com.baoidc.idcserver.po.ReportConf" id="map">
+   		<result column="user_id"  property="userId"/>
+   		<result column="username"  property="username"/>
+   		<result column="id"  property="id"/>
+   		<result column="type"  property="type"/>
+   		<result column="value"  property="value"/>
+   		<result column="user_type"  property="userType"/>
+   </resultMap>
+	
+	
+	<!-- 
+	//获取配置邮箱告警参数
+	public EmailParam queryManageEmailParam();
+	 -->
+	 <select id="queryManageEmailParam" resultType="com.baoidc.idcserver.po.EmailParam">
+	 	select id,is_ssl isSsl,port,smtp,email_account emailAccount,email_password emailPassword,send_name sendName,receive_email receiveEmail from email_param
+	 </select>
+	 
+	<!-- 
+	//修改邮箱告警配置参数
+	public void updateManageEmailParam(EmailParam emailParam);
+	 -->
+	<update id="updateManageEmailParam" parameterType="com.baoidc.idcserver.po.EmailParam">
+		update email_param set is_ssl = #{isSsl}, port = #{port},smtp = #{smtp},email_account = #{emailAccount},email_password = #{emailPassword},send_name = #{sendName},receive_email = #{receiveEmail} where id = #{id}
+	</update>
+	
+	<!-- 
+	//添加邮箱告警配置参数
+	public void insertManageEmailParam(EmailParam emailParam);
+	 -->
+	 <insert id="insertManageEmailParam" parameterType="com.baoidc.idcserver.po.EmailParam">
+	 	insert into email_param(is_ssl,port,smtp,email_account,email_password,send_name,receive_email)
+	 	values(#{isSsl},#{port},#{smtp},#{emailAccount},#{emailPassword},#{sendName},#{receiveEmail})
+	 </insert>
+	
+	<!-- 
+	//删除邮箱告警配置参数
+	public void deleteManageEmailParam(int id);
+	 -->
+	<delete id="deleteManageEmailParam" parameterType="int">
+		delete from email_param where id = #{id}
+	</delete>
+
+    <!-- 
+	//添加用户告警配置
+	public void addUserReportConf(List<ReportConf> list);
+     -->
+     <insert id="addUserReportConf" parameterType="com.baoidc.idcserver.po.ReportConf">
+     	insert into t_reportconf(user_id,username,id,type,value,user_type) values
+     	<foreach collection="list" item="obj" separator=",">
+     		(#{obj.userId},#{obj.username},#{obj.id},#{obj.type},#{obj.value},#{obj.userType})
+     	</foreach>
+     </insert>
+    <!-- 
+	//根据ID查询用户告警配置
+	public List<ReportConf> queryUserReportConf(int userId);    
+     -->
+     <select id="queryUserReportConf" parameterType="int" resultMap="map">
+     	select user_id,username,id,type,value,user_type from t_reportconf where user_id = #{userId}
+     </select>
+    
+    <!-- 
+    	//删除用户告警配置
+	public void deleteUserReportConf(@Param("userId")int suerId,@Param("type")String type);
+     -->
+     <delete id="deleteUserReportConf">
+     	delete from t_reportconf where user_id = #{userId} and type = #{type}
+     </delete>
+</mapper>

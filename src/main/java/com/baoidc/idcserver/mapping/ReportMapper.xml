@@ -1,0 +1,204 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.2//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+
+<mapper namespace="com.baoidc.idcserver.dao.IReportDAO">
+
+	<resultMap type="com.baoidc.idcserver.po.ReportFlow" id="flowReportMap">
+		<result column="generate_time" property="generateTime" jdbcType="VARCHAR" />
+		<result column="totalinpps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="totalinkbps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="totalattackpps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="totalattackkbps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="totaloutpps" property="outFlow" jdbcType="DOUBLE" />
+		<result column="totaloutkbps" property="outFlow" jdbcType="DOUBLE" />
+		<result column="tcpinpps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="tcpattackpps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="tcpoutpps" property="outFlow" jdbcType="DOUBLE" />
+		<result column="tcpinkbps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="tcpattackkbps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="tcpoutkbps" property="outFlow" jdbcType="DOUBLE" />
+		
+		<result column="tcpfraginpps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="tcpfragattackpps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="tcpfragoutpps" property="outFlow" jdbcType="DOUBLE" />
+		<result column="tcpfraginkbps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="tcpfragattackkbps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="tcpfragoutkbps" property="outFlow" jdbcType="DOUBLE" />
+		
+		<result column="udpinpps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="udpattackpps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="udpoutpps" property="outFlow" jdbcType="DOUBLE" />
+		<result column="udpinkbps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="udpattackkbps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="udpoutkbps" property="outFlow" jdbcType="DOUBLE" />
+		
+		<result column="udpfraginpps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="udpfragattackpps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="udpfragoutpps" property="outFlow" jdbcType="DOUBLE" />
+		<result column="udpfraginkbps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="udpfragattackkbps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="udpfragoutkbps" property="outFlow" jdbcType="DOUBLE" />
+		
+		<result column="icmpinpps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="icmpattackpps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="icmpoutpps" property="outFlow" jdbcType="DOUBLE" />
+		<result column="icmpinkbps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="icmpattackkbps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="icmpoutkbps" property="outFlow" jdbcType="DOUBLE" />
+		
+		<result column="httpinpps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="httpattackpps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="httpoutpps" property="outFlow" jdbcType="DOUBLE" />
+		<result column="httpinkbps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="httpattackkbps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="httpoutkbps" property="outFlow" jdbcType="DOUBLE" />
+		<result column="httpinqps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="httpattackqps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="httpoutqps" property="outFlow" jdbcType="DOUBLE" />
+		
+		<result column="httpsinpps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="httpsattackpps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="httpsoutpps" property="outFlow" jdbcType="DOUBLE" />
+		<result column="httpsinkbps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="httpsattackkbps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="httpsoutkbps" property="outFlow" jdbcType="DOUBLE" />
+		
+		<result column="dnsqinpps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="dnsqattackpps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="dnsqoutpps" property="outFlow" jdbcType="DOUBLE" />
+		<result column="dnsqinkbps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="dnsqattackkbps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="dnsqoutkbps" property="outFlow" jdbcType="DOUBLE" />
+		
+		<result column="dnsrinpps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="dnsrattackpps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="dnsroutpps" property="outFlow" jdbcType="DOUBLE" />
+		<result column="dnsrinkbps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="dnsrattackkbps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="dnsroutkbps" property="outFlow" jdbcType="DOUBLE" />
+		
+		<result column="sipinpps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="sipattackpps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="sipoutpps" property="outFlow" jdbcType="DOUBLE" />
+		<result column="sipinkbps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="sipattackkbps" property="attFlow" jdbcType="DOUBLE" />
+		<result column="sipoutkbps" property="outFlow" jdbcType="DOUBLE" />
+		
+		<result column="syninpps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="synoutpps" property="outFlow" jdbcType="DOUBLE" />
+		<result column="synattackpps" property="attFlow" jdbcType="DOUBLE" />
+		
+		<result column="synackinpps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="synackoutpps" property="outFlow" jdbcType="DOUBLE" />
+		<result column="synackattackpps" property="attFlow" jdbcType="DOUBLE" />
+		
+		<result column="ackinpps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="ackoutpps" property="outFlow" jdbcType="DOUBLE" />
+		<result column="ackattackpps" property="attFlow" jdbcType="DOUBLE" />
+		
+		<result column="finrstinpps" property="inFlow" jdbcType="DOUBLE" />
+		<result column="finrstoutpps" property="outFlow" jdbcType="DOUBLE" />
+		<result column="finrstattackpps" property="attFlow" jdbcType="DOUBLE" />
+		
+		
+	</resultMap>
+	
+	<!-- 流量连接map -->
+	<resultMap type="com.baoidc.idcserver.po.ReportConnection" id="connectsReportMap">
+		<result column="generate_time" property="generateTime" jdbcType="VARCHAR" />
+		<result column="increase_conn" property="increaseConn" jdbcType="DOUBLE" />
+		<result column="concur_conn" property="concurConn" jdbcType="DOUBLE" />
+	</resultMap>
+	<!-- 攻击趋势 -->
+	<resultMap type="com.baoidc.idcserver.po.ReportAttack" id="attReportMap">
+		<result column="attack_type" property="attackType" jdbcType="DOUBLE" />
+		<result column="attack_start_time" property="attackStartTime" jdbcType="VARCHAR" />
+		<result column="attack_end_time" property="attackEndTime" jdbcType="VARCHAR" />
+		<!-- <result column="attack_duration" property="attackDuration" jdbcType="DOUBLE" /> -->
+		<result column="generate_time" property="generateTime" jdbcType="VARCHAR" />
+		
+		<result column="totalinpps" property="totalinpps" jdbcType="DOUBLE" />
+		<result column="totaloutpps" property="totaloutpps" jdbcType="DOUBLE" />
+		<result column="totalattackpps" property="totalattackpps" jdbcType="DOUBLE" />
+		
+		<result column="attackmvpps" property="attackmvpps" jdbcType="DOUBLE" />
+		<result column="attackpvpps" property="attackpvpps" jdbcType="DOUBLE" />
+		<result column="zone_ip" property="zoneIp" jdbcType="VARCHAR" />
+		<result column="drop_packets" property="dropPackets" jdbcType="DOUBLE" />
+	</resultMap>
+	<resultMap type="com.baoidc.idcserver.po.ReportAttack" id="topnReportMap">
+		<result column="attackSum" property="attackTopn" jdbcType="DOUBLE" />
+		<result column="attack_type" property="attackType" jdbcType="DOUBLE" />
+	</resultMap>
+	
+	<select id="getFlowReport" resultMap="flowReportMap" statementType="STATEMENT">
+		select generate_time, ${inputFlow}, ${attFlow}, ${outFlow}
+		from ${tableName}
+		where zone_ip='${ipStr}' and
+		<![CDATA[
+		generate_time>='${startGenerate}' and generate_time<='${endGenerate}'
+		]]>
+	</select>
+	<select id="getConnectsReport" resultMap="connectsReportMap" statementType="STATEMENT">
+		select generate_time
+		<if test="unitType == null">
+			,increase_conn, concur_conn
+		</if>
+		<if test="unitType != null">
+			, ${unitType}
+		</if>
+		from ${tableName}
+		where zone_ip='${ipStr}' and
+		<![CDATA[
+		generate_time>='${startGenerate}' and generate_time<='${endGenerate}'
+		]]>
+	</select>
+	<select id="getAttReport" resultMap="flowReportMap" statementType="STATEMENT">
+		select generate_time, ${attFlow}
+		from ${tableName}
+		where zone_ip='${ipStr}' and
+		<![CDATA[
+		generate_time>='${startGenerate}' and generate_time<='${endGenerate}'
+		]]>
+	</select>
+	<select id="getTopnReport" resultMap="topnReportMap" statementType="STATEMENT">
+		select attack_type, 
+		<if test="dataType == 'attackpv'">
+			max(${topnResultType})
+		</if>
+		<if test="dataType == 'attackmv'">
+			sum(${topnResultType})/count(generate_time)
+		</if>
+		as attackSum
+		from ${tableName}
+		where zone_ip='${ipStr}' and
+		<![CDATA[
+		generate_time>='${startGenerate}' and generate_time<='${endGenerate}'
+		]]>
+		group by attack_type
+		order by attackSum desc
+	</select>
+	<!-- 攻击分布 -->
+	<select id="getAttDisReport" resultMap="attReportMap">
+		select attack_type, sum(attackmvpps) as attackmvpps
+		from ${tableName}
+		where zone_ip='${ipStr}' and
+		<![CDATA[
+		generate_time>=#{startGenerate} and generate_time<=#{endGenerate}
+		]]>
+		group by attack_type
+		order by attackmvpps desc
+	</select>
+	<select id="getAttDetails" resultMap="attReportMap">
+		select attack_type, attackmvpps, attackpvpps,attack_start_time, attack_end_time, drop_packets
+		from ${tableName}
+		where zone_ip='${ipStr}' and 
+		<if test="attType != null">
+			attack_type = #{attType} and
+		</if>
+		<![CDATA[
+		generate_time>=#{startGenerate} and generate_time<=#{endGenerate}
+		]]>
+	</select>
+
+</mapper>

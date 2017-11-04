@@ -1,0 +1,70 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baoidc.idcserver.dao.ISnmpDAO">
+   	<!-- 内存条的映射 -->
+	 <resultMap type="com.baoidc.idcserver.po.SnmpConfUser" id="snmpConfMap">
+ 		<id column="id" property="id"/>
+ 		<result column="user_id" property="userId"/>
+ 		<result column="sec_name" property="secName"/>
+		<result column="password" property="passWord"/>
+		<result column="comword" property="comWord"/>
+		<result column="version" property="version"/>
+		<result column="snmp_ip" property="snmpIp"/>
+		<result column="auth_pro" property="authPro"/>
+		<result column="auth_key" property="authKey"/>
+		<result column="sec_model" property="secModel"/>
+		<result column="instance_id" property="instanceId"/>
+		<result column="system_version" property="systemVersion"/>
+	 </resultMap>
+	 
+	 
+	 <select id="getSnmpConf4User" resultMap="snmpConfMap" parameterType="com.baoidc.idcserver.po.SnmpConfUser">
+	 	select id, user_id, sec_name, password, comword, version, snmp_ip, auth_pro, instance_id, auth_key, system_version, sec_model
+	 	from snmp_conf_user
+	 	where user_id = #{userId}
+	 	and instance_id = #{instanceId}
+	 </select>
+	 
+	 <insert id="setSnmpMessage" parameterType="com.baoidc.idcserver.po.SnmpConfUser" useGeneratedKeys="true" keyProperty="id">
+	 	insert into snmp_conf_user(user_id, sec_name, password, comword, version, snmp_ip, auth_pro, auth_key, system_version, instance_id, sec_model)
+	 	values(#{userId},#{secName},#{passWord},#{comWord},#{version},#{snmpIp},#{authPro},#{authKey},#{systemVersion},#{instanceId},#{secModel})
+	 
+	 </insert>
+	 
+	 <update id="updateSnmpConf" parameterType="com.baoidc.idcserver.po.SnmpConfUser">
+	 	update snmp_conf_user
+	 	<set>
+ 			<if test="secName != null and secName != '' ">
+	 			sec_name = #{secName},
+	 		</if>
+	 		<if test="passWord != null and passWord != '' ">
+	 			password = #{passWord},
+	 		</if>
+	 		<if test="comWord != null and comWord != '' ">
+	 			comword = #{comWord},
+	 		</if>
+	 		<if test="version != null and version != 0 ">
+	 			version = #{version},
+	 		</if>
+	 		<if test="snmpIp != null and snmpIp != '' ">
+	 			snmp_ip = #{snmpIp},
+	 		</if>
+	 		<if test="authPro != null and authPro != '' ">
+	 			auth_pro = #{authPro},
+	 		</if>
+	 		<if test="authKey != null and authKey != '' ">
+	 			auth_key = #{authKey},
+	 		</if>
+	 		<if test="systemVersion != null and systemVersion != '' ">
+	 			system_version = #{systemVersion}
+	 		</if>
+	 		<if test="secModel != null and secModel != '' ">
+	 			sec_model = #{secModel}
+	 		</if>
+	 	</set>
+	 	where user_id = #{userId}
+	 	and instance_id = #{instanceId}
+	 </update>
+	 
+</mapper>

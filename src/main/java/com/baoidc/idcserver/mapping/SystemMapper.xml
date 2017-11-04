@@ -1,0 +1,476 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baoidc.idcserver.dao.ISystemDAO">
+	<resultMap type="com.baoidc.idcserver.po.SysMenu" id="SystemMenuMap">
+       <id column="id" property="id"/>
+       <result column="text" property="text"/>
+       <result column="sref" property="sref"/>
+       <result column="icon" property="icon"/>
+       <result column="translate" property="translate"/>
+       <result column="parent_id" property="parentId"/>
+       <result column="status" property="status"/>
+       <result column="seq" property="seq"/>
+       <result column="type" property="type"/>
+       <result column="role_id" property="roleId"/> 
+       <!-- 关联父级菜单 -->
+       <association property="parentMenu" column="parent_id" select="getMenuById" javaType="com.baoidc.idcserver.po.SysMenu"/>
+       <!-- 关联用户角色 -->
+       <association property="userRole" column="role_id" select="getUserRoleById" javaType="com.baoidc.idcserver.po.UserRole"/>
+       <!-- 查询子菜单 -->
+	   <collection property="nodes" column="{parentId=id,roleId=role_id}" select="getSubMenu" ofType="com.baoidc.idcserver.po.SysMenu" />
+    </resultMap>
+    
+    <resultMap type="com.baoidc.idcserver.po.SysMenu" id="SystemRoleMenuMap">
+       <id column="id" property="id"/>
+       <result column="text" property="text"/>
+       <result column="sref" property="sref"/>
+       <result column="icon" property="icon"/>
+       <result column="translate" property="translate"/>
+       <result column="parent_id" property="parentId"/>
+       <result column="status" property="status"/>
+       <result column="seq" property="seq"/>
+       <result column="type" property="type"/>
+       <result column="role_id" property="roleId"/> 
+       <!-- 关联父级菜单 -->
+       <association property="parentMenu" column="parent_id" select="getMenuById" javaType="com.baoidc.idcserver.po.SysMenu"/>
+       <!-- 关联用户角色 -->
+       <association property="userRole" column="role_id" select="getUserRoleById" javaType="com.baoidc.idcserver.po.UserRole"/>
+       <!-- 查询子菜单 -->
+	   <collection property="nodes" column="{parentId=id,roleId=role_id}" select="getRoleMenuResources" ofType="com.baoidc.idcserver.po.SysMenu" />
+    </resultMap>
+    
+    <resultMap type="com.baoidc.idcserver.po.SysManageUser" id="SysManageUserMap">
+       <id column="id" property="id"/>
+       <result column="user_name" property="userName"/>
+       <result column="password" property="password"/>
+       <result column="role_id" property="roleId"/>
+       <result column="create_time" property="createTime"/>
+       <result column="create_by" property="createBy"/>
+       <result column="phone_number" property="phoneNumber"/>
+       
+       <result column="mobile_num" property="mobileNum"/>
+       <result column="qq_num" property="qqNum"/>
+       <result column="email" property="email"/>
+       <!-- 关联用户创建者 -->
+       <association property="createByUser" column="create_by" select="getSysManageUserById" javaType="com.baoidc.idcserver.po.SysManageUser"/>
+       <!-- 关联用户角色 -->
+       <association property="userRole" column="role_id" select="getUserRoleById" javaType="com.baoidc.idcserver.po.UserRole"/>
+    </resultMap>
+    
+    <resultMap type="com.baoidc.idcserver.po.SysManageUser" id="ManageUserMap">
+       <id column="id" property="id"/>
+       <result column="user_name" property="userName"/>
+       <result column="password" property="password"/>
+       <result column="role_id" property="roleId"/>
+       <result column="create_time" property="createTime"/>
+       <result column="create_by" property="createBy"/>
+       <result column="phone_number" property="phoneNumber"/>
+       
+       <result column="mobile_num" property="mobileNum"/>
+       <result column="qq_num" property="qqNum"/>
+       <result column="email" property="email"/>
+    </resultMap>
+    
+    <resultMap type="com.baoidc.idcserver.po.SysMenu" id="SingleMenuMap">
+       <id column="id" property="id"/>
+       <result column="text" property="text"/>
+       <result column="sref" property="sref"/>
+       <result column="icon" property="icon"/>
+       <result column="translate" property="translate"/>
+       <result column="parent_id" property="parentId"/>
+       <result column="status" property="status"/>
+       <result column="seq" property="seq"/>
+       <result column="type" property="type"/>
+       <result column="role_id" property="roleId"/>
+    </resultMap>
+    
+    <resultMap type="com.baoidc.idcserver.po.UserRole" id="UserRoleMap">
+       <id column="id" property="id"/>
+       <result column="role_name" property="roleName"/>
+       <collection property="roleMenus" column="id" select="getRoleMenuByRoleId" ofType="com.baoidc.idcserver.po.RoleMenu"/>
+    </resultMap>
+    
+    <resultMap type="com.baoidc.idcserver.po.SysApi" id="SysApiMap">
+       <id column="id" property="id"/>
+       <result column="api_name" property="apiName"/>
+       <result column="api_addr" property="apiAddr"/>
+    </resultMap>
+    
+    <resultMap type="com.baoidc.idcserver.po.SysSource" id="SysSourceMap">
+       <id column="id" property="id"/>
+       <result column="source_name" property="sourceName"/>
+       <result column="source_identity" property="sourceIdentity"/>
+       <result column="source_opts" property="sourceOpts" javaType="string" jdbcType="VARCHAR"/>
+    </resultMap>
+    
+    <resultMap type="com.baoidc.idcserver.po.Operation" id="OptionMap">
+       <id column="id" property="id"/>
+       <result column="operation_name" property="optName"/>
+    </resultMap>
+    
+    <resultMap type="com.baoidc.idcserver.po.RoleMenu" id="RoleMenuMap">
+       <result column="role_id" property="roleId"/>
+       <result column="menu_id" property="menuId"/>
+    </resultMap>
+    
+    <resultMap type="com.baoidc.idcserver.po.ArticleContent" id="ArticleContentMap">
+       <id column="id" property="id"/>
+       <result column="article_type_id" property="articleTypeId"/>
+       <result column="article_title" property="articleTitle"/>
+       <result column="publish_time" property="publishTime"/>
+       <result column="content" property="aContent"/>
+       <result column="author_username" property="authorUserName"/>
+       <!-- 关联文章类型 -->
+       <association property="articleType" column="article_type_id" select="getArticleTypeById" javaType="com.baoidc.idcserver.po.ArticleType"/>
+    </resultMap>
+    
+    <resultMap type="com.baoidc.idcserver.po.ArticleType" id="ArticleTypeMap">
+       <id column="id" property="id"/>
+       <result column="article_type" property="articleType"/>
+    </resultMap>
+	
+    <sql id="sysMenu_column_list">
+       id,text,sref,icon,translate,parent_id,status,seq,type,role_id
+    </sql>
+    
+    <sql id="sysManageUser_column_list">
+       id,user_name,password,role_id,create_time,create_by,phone_number,mobile_num,qq_num,email
+    </sql>
+    
+    <sql id="userRole_column_list">
+       id,role_name
+    </sql>
+    
+    <sql id="sysSource_column_list">
+       id,source_name,source_identity,source_opts
+    </sql>
+    
+    <sql id="sysApi_column_list">
+       id,api_name,api_addr
+    </sql>
+    
+    <sql id="operation_column_list">
+       id,operation_name
+    </sql>
+    
+    <sql id="roleMenu_column_list">
+       role_id,menu_id
+    </sql>
+    
+    <sql id="articleContent_column_list">
+       id,article_type_id,article_title,publish_time,content,author_username
+    </sql>
+    
+    <sql id="articleType_column_list">
+       id,article_type
+    </sql>
+    
+    <select id="getArticleContentList" resultMap="ArticleContentMap">
+       select 
+       <include refid="articleContent_column_list"/>
+       from article_content
+    </select>
+    
+    <!-- 查询最新的7条新闻 -->
+    <select id="getArticleContentListForUser" resultMap="ArticleContentMap">
+       select 
+       <include refid="articleContent_column_list"/>
+       from article_content order by publish_time desc limit 0,7
+    </select>
+    
+    <select id="getArticleTypeList" resultMap="ArticleTypeMap">
+      select
+      <include refid="articleType_column_list"/>
+      from article_type
+    </select>
+    
+    <select id="getArticleContentById" parameterType="int" resultMap="ArticleContentMap">
+      select
+      <include refid="articleContent_column_list"/>
+      from article_content where id = #{id}
+    </select>
+    
+    <select id="getArticleTypeById" parameterType="int" resultMap="ArticleTypeMap">
+      select
+      <include refid="articleType_column_list"/>
+      from article_type where id = #{id}
+    </select>
+    
+    <delete id="deleteArticleType" parameterType="int" flushCache="true">
+      delete from article_type where id = #{id}
+    </delete>
+    
+    <!-- 通过文章ID删除文章 -->
+    <delete id="deleteArticleContentById" parameterType="int" flushCache="true">
+      delete from article_content where id = #{id}
+    </delete>
+    
+    <!-- 删除文章类型时需要同时删除该类别下的文章 -->
+    <delete id="deleteArticleContentByTypeId" parameterType="int" flushCache="true">
+      delete from article_content where article_type_id = #{articleTypeId}
+    </delete>
+    
+    <insert id="createArticleType" parameterType="com.baoidc.idcserver.po.ArticleType" flushCache="true" keyProperty="id" useGeneratedKeys="true" >
+      insert into article_type(article_type) values(#{articleType})
+    </insert>
+    
+    <insert id="createArticleContent" parameterType="com.baoidc.idcserver.po.ArticleContent" flushCache="true" keyProperty="id" useGeneratedKeys="true" >
+      insert into article_content(article_type_id,article_title,publish_time,content,author_username) values(#{articleTypeId},#{articleTitle},#{publishTime},#{aContent},#{authorUserName})
+    </insert>
+    
+    <update id="updateArticleContent" parameterType="com.baoidc.idcserver.po.ArticleContent" flushCache="true">
+      update article_content
+      <set>
+        article_type_id = #{articleTypeId},
+        article_title = #{articleTitle},
+        publish_time = #{publishTime},
+        content = #{aContent},
+        author_username = #{authorUserName}
+      </set>
+      where id = #{id}
+    </update>
+    
+    <select id="getSysManageUserById" parameterType="int" resultMap="ManageUserMap">
+       select
+       <include refid="sysManageUser_column_list"/>
+       from sys_user
+       where id = #{id}
+    </select>
+    
+    <!-- 通过客户id关联查询出客户经理 -->
+    <select id="getCustomerManageByUserId" parameterType="int" resultMap="ManageUserMap">
+       select u.id,
+       s.id, s.user_name, s.password, s.role_id, s.create_time, s.create_by, s.phone_number, s.mobile_num, s.qq_num, s.email
+       from user u
+       left join sys_user s
+       on u.customer_manager_id = s.id
+       where u.id = #{id}
+    </select>
+    
+    <select id="getSysManageUserByUserName" parameterType="string" resultMap="ManageUserMap">
+       select
+       <include refid="sysManageUser_column_list"/>
+       from sys_user
+       where user_name = #{userName}
+    </select>
+    
+    <!-- 查询出所有的客户经理，条件为角色ID为3 -->
+    <select id="getAllCustomerManager" resultMap="ManageUserMap">
+      select
+      <include refid="sysManageUser_column_list"/>
+      from sys_user
+      where role_id = 3
+    </select>
+    
+    <select id="getSysManageUserList" resultMap="SysManageUserMap">
+      select
+      <include refid="sysManageUser_column_list"/>
+      from sys_user
+    </select>
+    
+    <insert id="createSysManageUser" parameterType="com.baoidc.idcserver.po.SysManageUser" useGeneratedKeys="true" keyProperty="id" flushCache="true">
+      insert into sys_user(user_name,password,role_id,create_time,create_by,phone_number,mobile_num,qq_num,email)
+      values(#{userName},#{password},#{roleId},#{createTime},#{createBy},#{phoneNumber},#{mobileNum},#{qqNum},#{email})
+    </insert>
+    
+    <delete id="delManageUserById" parameterType="int" flushCache="true">
+      delete from sys_user where id = #{id}
+    </delete>
+    
+    <delete id="modifyManageUserById" parameterType="com.baoidc.idcserver.po.SysManageUser" flushCache="true">
+      update sys_user
+      <set>
+         user_name = #{userName},password = #{password},role_id = #{roleId},phone_number = #{phoneNumber},
+         mobile_num = #{mobileNum},qq_num = #{qqNum},email = #{email}
+      </set>
+      where id = #{id}
+    </delete>
+    
+    <select id="getRoleMenuByRoleId" parameterType="int" resultMap="RoleMenuMap">
+       select 
+       <include refid="roleMenu_column_list"/>
+       from userRole_menu where role_id = #{roleId}
+    </select>
+    
+    <!-- 查询角色菜单资源 -->
+   <!--  <select id="getRoleMenuResources" parameterType="java.util.Map" resultMap="SystemRoleMenuMap">
+    	select 
+    	<include refid="sysMenu_column_list"/>
+    	from sys_menu
+    	where parent_id = #{parentId} 
+    	and id in (select menu_id from userRole_menu where role_id = #{roleId})
+    	and status = 0 and type = 0 order by seq
+    </select> -->
+    
+    <!-- 查询角色菜单资源 -->
+    <select id="getRoleMenuResources" parameterType="java.util.Map" resultMap="SystemRoleMenuMap">
+    	select 
+    	a.id,a.text,a.sref,a.icon,a.translate,a.parent_id,a.status,a.seq,a.type,b.role_id
+    	from sys_menu a ,userRole_menu b 
+        where a.parent_id = #{parentId} and b.role_id = #{roleId} and a.id = b.menu_id and a.status = 0 and a.type=0 order by a.seq
+    </select>
+    
+    <!-- 查询角色菜单资源 -->
+    <select id="getSubMenu" parameterType="java.util.Map" resultMap="SystemMenuMap">
+    	select 
+    	<include refid="sysMenu_column_list"/>
+    	from sys_menu
+    	where parent_id = #{parentId} 
+    	and role_id = #{roleId}
+    	and status = 0 and type = 0 order by seq
+    </select>
+    
+    <!-- 查询菜单信息 -->
+    <select id="getFullMenuById" parameterType="int" resultMap="SystemMenuMap">
+    	select 
+    	<include refid="sysMenu_column_list"/>
+    	from sys_menu
+    	where id = #{id}
+    </select>
+    
+    <!-- 查询角色菜单资源 -->
+    <select id="getMenuById" parameterType="int" resultMap="SingleMenuMap">
+    	select 
+    	<include refid="sysMenu_column_list"/>
+    	from sys_menu
+    	where id = #{id}
+    </select>
+    
+    <!-- 查询系统角色 -->
+    <select id="getUserRoleById" parameterType="int" resultMap="UserRoleMap">
+    	select 
+    	<include refid="userRole_column_list"/>
+    	from user_role
+    	where id = #{id}
+    </select>
+    
+    <select id="getUserRoleList" resultMap="UserRoleMap">
+       select
+       <include refid="userRole_column_list"/>
+       from user_role
+    </select>
+    
+    <!-- 查询系统角色 -->
+    <select id="getUserRoles" resultMap="UserRoleMap">
+    	select 
+    	<include refid="userRole_column_list"/>
+    	from user_role
+    </select>
+    
+    <insert id="createNewUserRole" parameterType="com.baoidc.idcserver.po.UserRole" keyProperty="id" useGeneratedKeys="true" flushCache="true">
+        insert into user_role(role_name) values(#{roleName})
+    </insert>
+    
+     <!-- 批量插入角色菜单 -->
+    <insert id="addUserRoleMenus" parameterType="java.util.List">
+      insert into userRole_menu(role_id,menu_id) values
+      <foreach collection="roleMenus" item="roleMenu" separator=",">
+        (#{roleMenu.roleId},#{roleMenu.menuId})
+      </foreach>
+    </insert>
+    
+    <update id="updateUserRole" parameterType="com.baoidc.idcserver.po.UserRole" flushCache="true">
+        update user_role set role_name = #{roleName} where id = #{id}
+    </update>
+    
+    <delete id="deleteUserRole" parameterType="int" flushCache="true">
+        delete from user_role where id = #{id}
+    </delete>
+    
+    <delete id="deleteRoleMenuByRoleId" parameterType="int" flushCache="true">
+       delete from userRole_menu where role_id = #{roleId}
+    </delete>
+    
+    <!-- 查询系统菜单资源 -->
+    <select id="getMenuResources" resultMap="SystemMenuMap">
+    	select 
+    	<include refid="sysMenu_column_list"/>
+    	from sys_menu
+    	where status = 0 and type = 0 order by seq
+    </select>
+    
+    <!-- 查询系统菜单资源，查询出以及菜单 -->
+    <select id="getMenuTree" resultMap="SystemMenuMap">
+    	select 
+    	<include refid="sysMenu_column_list"/>
+    	from sys_menu
+    	where status = 0 and type = 0 and parent_id = 0 order by seq
+    </select>
+    
+    <insert id="addNewMenu" parameterType="com.baoidc.idcserver.po.SysMenu" flushCache="true" useGeneratedKeys="true" keyProperty="id">
+       insert into sys_menu(text,sref,icon,translate,parent_id,status,seq,type,role_id)
+       values(#{text},#{sref},#{icon},#{translate},#{parentId},#{status},#{seq},#{type},#{roleId})
+    </insert>
+    
+    <!-- 查询最大序号 -->
+    <select id="getMaxSeq" parameterType="int" resultType="int" >
+    	select 
+    	<![CDATA[
+    	max(seq) 
+    	]]>
+    	from sys_menu
+    </select>
+    
+    <!-- 删除菜单 -->
+    <delete id="deleteMenuByMenuId" parameterType="int" flushCache="true">
+       delete from sys_menu where id = #{menuId}
+    </delete>
+    
+    <!-- 删除菜单 -->
+    <delete id="deleteSubMenuByParentId" parameterType="java.util.List" flushCache="true">
+       delete from sys_menu where id in
+       <foreach collection="list" index="index" item="nodes" open="(" separator="," close=")">
+           #{nodes.id}
+       </foreach>
+    </delete>
+    
+    <!-- 修改菜单 -->
+    <update id="updateSystemMenu" parameterType="com.baoidc.idcserver.po.SysMenu" flushCache="true">
+       update sys_menu 
+       set text = #{text},sref = #{sref},icon = #{icon},translate = #{translate},parent_id = #{parentId},role_id = #{roleId}
+       where id = #{id}
+    </update>
+    
+    <!-- 获取API列表 -->
+    <select id="getSysApiList" resultMap="SysApiMap">
+      select
+      <include refid="sysApi_column_list"/>
+      from sys_api
+    </select>
+    
+    <!-- 新建API -->
+    <insert id="addNewSystemApi" parameterType="com.baoidc.idcserver.po.SysApi" flushCache="true" useGeneratedKeys="true" keyProperty="id">
+      insert into sys_api(api_name,api_addr) values(#{apiName},#{apiAddr})
+    </insert>
+    
+    <!-- 删除API -->
+    <delete id="delSysApiById" parameterType="int" flushCache="true">
+      delete from sys_api where id = #{id}
+    </delete>
+    
+    <!-- 修改API -->
+    <update id="updateSysApi" parameterType="com.baoidc.idcserver.po.SysApi" flushCache="true">
+      update sys_api set api_name = #{apiName},api_addr = #{apiAddr} where id = #{id}
+    </update>
+    
+    <!-- 新建系统资源 -->
+    <insert id="createSysSource" parameterType="com.baoidc.idcserver.po.SysSource" useGeneratedKeys="true" keyProperty="id">
+      insert into sys_source(source_name,source_identity,source_permissions) values(#{sourceName},#{sourceIdentity},#{sourcePermissions})
+    </insert>
+    
+    <!-- 查询系统资源列表 -->
+    <select id="getSysSources" resultMap="SysSourceMap">
+      select
+      <include refid="sysSource_column_list"/>
+      from sys_source
+    </select>
+    
+    <select id="getOperationById" resultMap="OptionMap" parameterType="int">
+       select
+       <include refid="operation_column_list"/>
+       from operation
+       where id=#{id}
+    </select>
+    
+</mapper>

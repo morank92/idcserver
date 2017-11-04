@@ -1,0 +1,135 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baoidc.idcserver.dao.ProductConfDAO">
+	<resultMap type="com.baoidc.idcserver.po.DeviceSourceParam" id="sourceParamMap">
+       <id column="id" property="id"/>
+       <result column="source_param" property="sourceParam"/>
+       <result column="source_param_step" property="sourceParamStep"/>
+       <result column="source_param_min" property="sourceParamMin"/>
+       <result column="source_param_max" property="sourceParamMax"/>
+       <result column="price" property="price"/>
+       <result column="sale_num" property="saleNum"/>
+       <result column="tag_id" property="tagId"/>
+       <result column="tag_name" property="tagName"/>
+       <result column="tag_value" property="tagValue"/>
+    </resultMap>
+    <!-- 
+    //获取所有以配置的参数项
+	public List<DeviceSourceParam> getAllConfParam();
+     -->
+	<select id="getAllConfParam" resultMap="sourceParamMap">
+    	select p.id, p.source_param,p.source_param_step, p.source_param_min, p.source_param_max, p.price,p.sale_num,
+    	t.id tag_id, t.tag_value, t.tag_name
+		from  device_source_param p
+		left join source_type_tag t
+		on p.tag_id = t.id
+    </select>
+    <!-- 
+    //删除配置项
+	public void deleteParam(int id);
+     -->
+    <delete id="deleteParam" parameterType="int">
+    	delete from device_source_param where id = #{id}
+    </delete>
+    <!-- 
+	//删除产品和配置项的关系
+	public void deleteProductParam(int id);
+     -->
+    <delete id="deleteProductParam" parameterType="int">
+    	delete from product_source where source_id = #{id}
+    </delete>
+    <!-- 
+    //添加配置项
+	public void addParam(@Param("paramList")List<DeviceSourceParam> paramList);
+     -->
+    <insert id="addParam" parameterType="java.util.List">
+    	insert into device_source_param(tag_id,source_param,source_param_step,source_param_min,source_param_max,price,sale_num) values
+    	<foreach collection="paramList" item="obj" separator=",">
+    		(#{obj.tagId},#{obj.sourceParam},#{obj.sourceParamStep},#{obj.sourceParamMin},#{obj.sourceParamMax},#{obj.price},#{obj.saleNum})
+    	</foreach>
+    </insert>
+    <!-- 
+    //修改配置项
+	public void updateParam(@Param("paramList")List<DeviceSourceParam> paramList);
+     -->
+    <update id="updateParam" parameterType="java.util.List">
+    	<foreach collection="paramList" item="obj" separator=";">
+    	update device_source_param
+    		<set>
+    			<if test="obj.sourceParam != null ">
+    				source_param = #{obj.sourceParam},
+    			</if>
+    			<if test="obj.sourceParamStep != 0 ">
+    				source_param_step = #{obj.sourceParamStep},
+    			</if>
+    			<if test="obj.sourceParamMin != 0 ">
+    				source_param_min = #{obj.sourceParamMin},
+    			</if>
+    			<if test="obj.sourceParamMax != 0 ">
+    				source_param_max = #{obj.sourceParamMax},
+    			</if>
+    			<if test="obj.price != 0.0 ">
+    				price = #{obj.price},
+    			</if>
+    			<if test="obj.saleNum != 0.0 ">
+    				sale_num = #{obj.saleNum}
+    			</if>
+    		</set>
+    		where id = #{obj.id}
+    	</foreach>
+    </update>
+    
+    <!-- 
+    //获取某一种产品的配置项
+	public List<Integer> getProductParam(int proId);
+     -->
+     <select id="getProductParam" parameterType="int" resultType="int">
+     	select source_id from product_source where product_id = #{proId}
+     </select>
+   <!-- 
+    //获取最外层的提供项
+	public List<IntStringClass> getServerOffer();
+    -->
+    <select id="getServerOffer" resultType="com.baoid.idcserver.vo.IntStringClass">
+    	select service_id id,service_name name from service_type
+    </select>
+   <!-- 
+	//根据最外层的提供想 查询当前所提供的产品
+	public List<Integer> getProductOffer(int serverId);
+    -->
+    <select id="getProductOffer" resultType="com.baoid.idcserver.vo.IntStringClass">
+    	select product_id id,product_name name from product_order where service_id = #{serverId}
+    </select>
+    
+    <!-- 
+    //配置产品
+	public void toConfProductParam(@Param("checkedArr")List<Integer> checkedArr,@Param("proId")Integer proId);
+     -->
+     <insert id="toConfProductParam">
+     	insert into product_source (product_id,source_id) values
+     	<foreach collection="checkedArr" item="sourceId" separator=",">
+     		(#{proId},#{sourceId})
+     	</foreach>
+     </insert>
+  <!-- 
+  //移除产品配置
+	public void removeProductParam(int proId);
+   -->
+   <delete id="removeProductParam" parameterType="int">
+   		delete from product_source where product_id = #{proId}
+   </delete>
+   
+   <!-- 
+   //判断机房下面是否有资产
+	public int checkHostRoomServersUse(int id);
+	public int checkHostRoomChestUse(int id);
+    -->
+    <select id="checkHostRoomServersUse" parameterType="int" resultType="int">
+    	select count(*) from servers where host_room_id = #{id}
+    </select>
+    <select id="checkHostRoomChestUse" parameterType="int" resultType="int">
+    	select count(*) from chest where host_room_id = #{id}
+    </select>
+    
+</mapper>

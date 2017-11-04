@@ -1,0 +1,154 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.baoidc.idcserver.dao.IUserDAO">
+   <!-- 用户 -->
+   <resultMap type="com.baoidc.idcserver.po.User" id="UserMap">
+       <id column="id" property="id"/>
+       <result column="user_name" property="userName"/>
+       <result column="e_mail" property="email"/>
+       <result column="password" property="password"/>
+       <result column="phone_num" property="phoneNum"/>
+       <result column="register_time" property="registerTime"/>
+       <result column="identity_type" property="identityType"/>
+       <result column="real_name" property="realName"/>
+       <result column="company_addr" property="companyAddr"/>
+       <result column="office_phone" property="officePhone"/>
+       <result column="zip_code" property="zipCode"/>
+       <result column="fax_no" property="faxNo"/>
+       <result column="industry_app" property="industryApp"/>
+       <result column="primary_busi" property="primaryBusi"/>
+       <result column="network_addr" property="networkAddr"/>
+       <result column="customer_manager_id" property="customerManagerId"/>
+       <result column="qq_num" property="qqNum"/>
+       <result column="zfbao" property="zfbao"/>
+       <result column="user_role" property="userRole"/>
+       <result column="update_flag" property="updateFlag"/>
+       <result column="auth_type" property="authType"/>
+       <result column="auth_picture" property="authPicture"/>
+       <result column="auth_picture_front" property="authPictureFront"/>
+       <result column="auth_picture_back" property="authPictureBack"/>
+       <result column="auth_name" property="authName"/>
+       <result column="auth_num" property="authNum"/>
+   </resultMap>
+   
+   <!-- 用户联系人 -->
+   <resultMap type="com.baoidc.idcserver.po.UserContacts" id="UserContactsMap">
+      <id column="id" property="id"/>
+      <result column="user_id" property="userId"/>
+      <result column="real_name" property="realName"/>
+      <result column="fixedlink_phone" property="fixedlinkPhone"/>
+      <result column="mobile_phone" property="mobilePhone"/>
+      <result column="qq_num" property="qqNum"/>
+      <result column="contact_email" property="contactEmail"/>
+      <result column="auth_type" property="authType"/>
+      <result column="auth_num" property="authNum"/>
+   </resultMap>
+   
+   <sql id="User_Column_List">
+      id,user_name,e_mail,password,phone_num,register_time,
+      identity_type,real_name,company_addr,office_phone,zip_code,
+      fax_no,industry_app,primary_busi,network_addr,customer_manager_id,qq_num,zfbao,user_role,update_flag,
+      auth_type,auth_picture,auth_picture_front,auth_picture_back,auth_name,auth_num
+   </sql>
+   
+   <sql id="UserContacts_Column_List">
+   		id,user_id,real_name,fixedlink_phone,mobile_phone,contact_email,qq_num
+   </sql>
+   
+   <!-- 新增用户 -->
+   <insert id="addNewUser" parameterType="com.baoidc.idcserver.po.User" flushCache="true" useGeneratedKeys="true" keyProperty="id">
+      insert into user(user_name,e_mail,password,phone_num,register_time,user_role) 
+      values(#{userName},#{email},#{password},#{phoneNum},#{registerTime},#{userRole})
+   </insert>
+   
+   <!-- 根据ID获取用户信息 -->
+   <select id="getUserInfoById" resultMap="UserMap" parameterType="int">
+      select 
+      <include refid="User_Column_List"/>
+      from user where id = #{id}
+   </select>
+   <!-- 根据用户Id获取用户的联系人信息 -->
+   <select id="getUserContactsById" resultMap="UserContactsMap" parameterType="int">
+      select 
+      <include refid="UserContacts_Column_List"/>
+      from user_contacts where user_id = #{id}
+   </select>
+   
+   <!-- 根据ID获取用户信息 -->
+   <select id="getUserInfoByEmail" resultMap="UserMap" parameterType="string">
+      select 
+      <include refid="User_Column_List"/>
+      from user where e_mail = #{email}
+   </select>
+   
+   <!-- 获取用户列表 -->
+   <select id="getAllUser" resultMap="UserMap">
+     select
+     <include refid="User_Column_List"/>
+     from user u
+     where 1=1
+     <if test="userId!=0">
+     	and u.id = #{userId}
+     </if>
+     <if test="qqNum != null and qqNum != ''">
+      and u.qq_num = #{qqNum} 
+     </if>
+     <!-- <if test="customerManagerId != null or customerManagerId != 0">
+      and u.customer_manager_id = #{customerManagerId} 
+     </if> -->
+   </select>
+   
+   <!-- 修改用户信息 -->
+   <update id="updateUserInfo" parameterType="com.baoidc.idcserver.po.User" flushCache="true">
+       update user
+       <set>
+          <if test="email != null">
+             e_mail = #{email},
+          </if>
+          <if test="password != null">
+             password = #{password},
+          </if>
+          <if test="phoneNum != null">
+             phone_num = #{phoneNum},
+          </if>
+          <if test="realName != null">
+             real_name = #{realName},
+          </if>
+          <if test="companyAddr != null">
+             company_addr = #{companyAddr},
+          </if>
+          <if test="officePhone != null">
+             office_phone = #{officePhone},
+          </if>
+          <if test="zipCode != null">
+             zip_code = #{zipCode},
+          </if>
+          <if test="faxNo != null">
+             fax_no = #{faxNo},
+          </if>
+          <if test="industryApp != null">
+             industry_app = #{industryApp},
+          </if>
+          <if test="primaryBusi != null">
+             primary_busi = #{primaryBusi},
+          </if>
+          <if test="networkAddr != null">
+             network_addr = #{networkAddr},
+          </if>
+          <if test="customerManagerId != 0">
+             customer_manager_id = #{customerManagerId}
+          </if>
+       </set>
+       where id = #{id}
+   </update>
+
+	<!-- 
+	//判断邮箱是否存在
+	public int checkEmail(String email);
+	 -->
+	<select id="checkEmail" parameterType="string" resultType="int">
+		select count(id) from user where e_mail = #{email}
+	</select>
+
+</mapper>
